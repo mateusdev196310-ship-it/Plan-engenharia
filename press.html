@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body class="theme-dark">
+  <body class="theme-dark home-no-header">
     <header class="site-header wedge">
       <div class="topbar"><div class="container topbar-inner"><a class="brand" href="index.html">PLAN Engenharia</a><div class="contact-top">📞 (73) 3525-1665</div></div></div>
       <div class="container header-inner">
@@ -15,8 +15,20 @@
       </div>
     </header>
 
-  <section class="page-hero" style="background-image:url('assets/img/trator.jpg')">
-      <svg class="hero-arc page-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
+  <section class="page-hero press-hero" style="background-image:url('assets/img/trator.jpg')">
+      <div class="hero-art" aria-hidden="true"></div>
+      <a class="hero-logo" href="index.html" aria-label="PLAN Engenharia">
+        <img src="assets/img/plan-logo.svg" alt="PLAN Engenharia" />
+      </a>
+      <nav class="hero-topnav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Quem Somos</a>
+        <a href="atividades.html">Atuação</a>
+        <a href="obras.html">Obras</a>
+        <a href="press.html" class="active">Mídia</a>
+        <a href="contato.html">Contatos</a>
+      </nav>
+      <svg class="hero-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="arcGrad" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#123053"/>
@@ -33,12 +45,12 @@
 
     <section class="section dark-bg">
       <div class="container news">
-        <article class="news-item">
+        <article class="news-item glass-card">
           <time datetime="2025-01-01">01/01/2025</time>
           <h3>Nova obra iniciada em Jequié</h3>
           <p>Projeto de infraestrutura com cronograma otimizado e alto padrão de qualidade.</p>
         </article>
-        <article class="news-item">
+        <article class="news-item glass-card">
           <time datetime="2024-11-01">11/2024</time>
           <h3>Ampliação de frota de equipamentos</h3>
           <p>Locação de novos equipamentos disponíveis para obras de grande porte.</p>

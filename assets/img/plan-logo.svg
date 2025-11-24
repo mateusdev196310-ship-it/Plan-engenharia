@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="40" viewBox="0 0 160 40" role="img" aria-label="PLAN Engenharia">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#2f6fff"/>
+      <stop offset="100%" stop-color="#00b3ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="160" height="40" rx="10" fill="rgba(12,33,54,0.0)"/>
+  <g fill="url(#g)" font-family="Montserrat, Arial, sans-serif" font-weight="800">
+    <text x="8" y="26" font-size="24" fill="url(#g)">PLAN</text>
+  </g>
+  <g font-family="Source Sans Pro, Arial, sans-serif" font-weight="600" fill="#cfe6ff">
+    <text x="84" y="26" font-size="14">Engenharia</text>
+  </g>
+</svg>

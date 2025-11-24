@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body class="theme-dark">
+  <body class="theme-dark home-no-header">
     <header class="site-header wedge">
       <div class="topbar"><div class="container topbar-inner"><a class="brand" href="index.html">PLAN Engenharia</a><div class="contact-top">📞 (73) 3525-1665</div></div></div>
       <div class="container header-inner">
@@ -15,8 +15,20 @@
       </div>
     </header>
 
-  <section class="page-hero" style="background-image:url('assets/img/trator.jpg')">
-      <svg class="hero-arc page-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
+  <section class="page-hero obras-hero" style="background-image:url('assets/img/trator.jpg')">
+      <div class="hero-art" aria-hidden="true"></div>
+      <a class="hero-logo" href="index.html" aria-label="PLAN Engenharia">
+        <img src="assets/img/plan-logo.svg" alt="PLAN Engenharia" />
+      </a>
+      <nav class="hero-topnav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Quem Somos</a>
+        <a href="atividades.html">Atuação</a>
+        <a href="obras.html" class="active">Obras</a>
+        <a href="press.html">Mídia</a>
+        <a href="contato.html">Contatos</a>
+      </nav>
+      <svg class="hero-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="arcGrad" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#123053"/>
@@ -33,15 +45,15 @@
 
     <section class="section dark-bg">
       <div class="container grid-3">
-        <article class="card">
+        <article class="card glass-card">
           <h3>Centro logístico</h3>
           <p>Estruturas metálicas e pavimentação em fase de conclusão.</p>
         </article>
-        <article class="card">
+        <article class="card glass-card">
           <h3>Parque industrial</h3>
           <p>Terraplanagem e infraestrutura viária.</p>
         </article>
-        <article class="card">
+        <article class="card glass-card">
           <h3>Residencial sustentável</h3>
           <p>Construções verticais com foco em eficiência energética.</p>
         </article>

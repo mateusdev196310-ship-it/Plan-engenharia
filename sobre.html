@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body class="theme-dark">
+  <body class="theme-dark home-no-header">
     <header class="site-header wedge">
       <div class="topbar"><div class="container topbar-inner"><a class="brand" href="index.html">PLAN Engenharia</a><div class="contact-top">📞 (73) 3525-1665</div></div></div>
       <div class="container header-inner">
@@ -15,8 +15,21 @@
       </div>
     </header>
 
-  <section class="page-hero" style="background-image:url('assets/img/trator.jpg')">
-      <svg class="hero-arc page-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
+  <section class="page-hero quem-somos">
+      <div class="hero-art" aria-hidden="true"></div>
+      <!-- Logo simples sobre o herói, sem faixa lateral nem telefone -->
+      <a class="hero-logo" href="index.html" aria-label="PLAN Engenharia">
+        <img src="assets/img/plan-logo.svg" alt="PLAN Engenharia" />
+      </a>
+      <nav class="hero-topnav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="sobre.html" class="active">Quem Somos</a>
+        <a href="atividades.html">Atuação</a>
+        <a href="obras.html">Obras</a>
+        <a href="press.html">Mídia</a>
+        <a href="contato.html">Contatos</a>
+      </nav>
+      <svg class="hero-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="arcGrad" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="#123053"/>
@@ -26,30 +39,157 @@
         <path d="M0,12 Q50,-20 100,12 L100,0 L0,0 Z" fill="url(#arcGrad)" opacity=".55" />
       </svg>
       <div class="container">
-    <h1 class="big-outline">sobre</h1>
-        <h2>Sobre a Plan Engenharia</h2>
+        <h1 class="page-title">Quem Somos</h1>
+        <h1 class="big-outline">quem somos</h1>
+      </div>
+  </section>
+
+    <section class="section dark-bg">
+      <div class="container">
+        <h2 class="section-title">Sobre a PLAN Engenharia</h2>
+        <article class="lead-text">
+          <p class="tagline">PLAN Engenharia — sem medo de desafios.</p>
+          <p>
+            Com 48 anos de atuação, a PLAN acumula milhares de metros quadrados construídos em projetos residenciais, comerciais,
+            industriais e públicos. Ao longo dessa trajetória, consolidou-se como referência no setor, com entregas reconhecidas
+            pela qualidade, cumprimento de prazos e inovação.
+          </p>
+          <p>
+            No Brasil, a empresa reúne obras emblemáticas em diferentes segmentos — de soluções hospitalares e educacionais a centros
+            logísticos, empreendimentos industriais e espaços esportivos — sempre pautadas por alto desempenho, segurança e eficiência.
+          </p>
+          <p>
+            Além da atuação em obras públicas e privadas, a PLAN vem ampliando investimentos em incorporação imobiliária, desenvolvimento
+            logístico e parcerias público‑privadas (PPPs) voltadas à infraestrutura. Essa expansão estratégica reforça a versatilidade
+            da empresa e sua capacidade de agregar valor em diferentes modelos de negócio.
+          </p>
+          <p>
+            Com presença internacional consolidada, a PLAN fortalece continuamente sua atuação em Portugal, com empreendimentos de
+            destaque que traduzem a combinação de elegância, funcionalidade e atenção minuciosa aos detalhes.
+          </p>
+          <p>
+            Esses são apenas alguns exemplos de um portfólio robusto, que reúne empreendimentos marcantes entregues com eficiência,
+            técnica e visão de longo prazo.
+          </p>
+          <p>
+            Sob a liderança de sua equipe executiva, a PLAN Engenharia vive um novo momento de expansão e posicionamento, sem abrir
+            mão dos valores que marcam sua história. Mais do que construções, a PLAN entrega visão estratégica, técnica refinada e confiança.
+          </p>
+          <p><strong>A experiência gera excelência.</strong></p>
+        </article>
       </div>
     </section>
 
-    <section class="section dark-bg">
-      <div class="container grid-2">
-        <article class="card">
-          <p>
-            Ética e seriedade na condução dos negócios, determinação na qualidade dos
-            serviços e velocidade na entrega dos produtos. Esses são os pilares que
-            orientam nossa atuação desde a fundação.
-          </p>
-          <div class="pill-group">
-            <div class="pill"><strong>Missão:</strong> construir com qualidade e transparência.</div>
-            <div class="pill"><strong>Visão:</strong> ser referência regional em soluções de engenharia.</div>
-            <div class="pill"><strong>Valores:</strong> ética, segurança, responsabilidade e inovação.</div>
-          </div>
-        </article>
-        <article class="card">
-          <figure class="media">
-              <img src="assets/img/trator.jpg" alt="Vista aérea de obras urbanas" />
-          </figure>
-        </article>
+    <!-- Valores / Políticas / Diretrizes em duas colunas -->
+    <section class="section">
+      <div class="container values-section">
+        <div class="grid-2">
+          <article>
+            <h2 class="section-title">Valores, Políticas e Diretrizes</h2>
+            <h3>Valores</h3>
+            <p>Ética, transparência, segurança, respeito às pessoas e excelência técnica orientam nossas decisões e relações, promovendo cultura de integridade e alto desempenho.</p>
+            <h3>Políticas</h3>
+            <p>Qualidade certificada, segurança do trabalho, compliance e responsabilidade socioambiental estruturam nossos processos, assegurando previsibilidade, conformidade e impacto positivo.</p>
+            <h3>Diretrizes</h3>
+            <p>Planejamento rigoroso, inovação contínua, foco em prazos e satisfação do cliente direcionam cada projeto, reduzindo riscos e elevando a eficiência operacional.</p>
+          </article>
+          <aside>
+            <ul class="values-list">
+              <li>Qualidade consistente e cumprimento de prazos</li>
+              <li>Segurança operacional e saúde no trabalho</li>
+              <li>Governança, ética e compliance efetivos</li>
+              <li>Eficiência, inovação e melhoria contínua</li>
+              <li>Responsabilidade socioambiental e relação com comunidades</li>
+              <li>Foco no cliente e experiência de entrega</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Linha do Tempo (Quem Somos) -->
+    <section class="section diagonal">
+      <div class="container">
+        <h2 class="section-title">Nossa História</h2>
+        <div class="timeline-nav">
+          <button class="timeline-prev" aria-label="Anterior">◄</button>
+          <button class="timeline-next" aria-label="Próximo">►</button>
+        </div>
+        <div class="timeline-track">
+        <ul class="timeline horiz">
+          <li class="timeline-item">
+            <div class="timeline-year">1977</div>
+            <div class="timeline-content">Início das atividades com vocação para excelência em serviços de engenharia.</div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-year">1979</div>
+            <div class="timeline-content">Primeira grande obra: estruturas para centros de distribuição e varejo.</div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-year">1986</div>
+            <div class="timeline-content">Entrada em incorporação e desenvolvimento imobiliário de alto padrão.</div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-year">1990</div>
+            <div class="timeline-content">Expansão para novas regiões com obras comerciais e industriais.</div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-year">2004</div>
+            <div class="timeline-content">Primeiros projetos internacionais com foco em infraestrutura.</div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-year">2009</div>
+            <div class="timeline-content">Grandes complexos comerciais e logísticos com soluções completas.</div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-year">2013</div>
+            <div class="timeline-content">Participação em obras emblemáticas e arenas multiuso.</div>
+          </li>
+          <li class="timeline-item">
+            <div class="timeline-year">Atual</div>
+            <div class="timeline-content">Portfólio robusto com entregas reconhecidas por qualidade e inovação.</div>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fundadores / Liderança -->
+    <section class="section dark-bg founders">
+      <div class="container">
+        <h2 class="section-title">Fundadores</h2>
+        <div class="grid-3">
+          <article class="card">
+            <img src="assets/img/photo1.svg" alt="Retrato genérico" />
+            <h3>Nome Exemplo A — Fundador</h3>
+            <p>Responsável pela visão estratégica e expansão, com foco em qualidade e cumprimento de prazos.</p>
+          </article>
+          <article class="card">
+            <img src="assets/img/photo2.svg" alt="Retrato genérico" />
+            <h3>Nome Exemplo B — Co‑fundador</h3>
+            <p>Conduz a gestão técnica, integrando estruturas metálicas, infraestrutura urbana e inovação.</p>
+          </article>
+          <article class="card">
+            <img src="assets/img/hero3.svg" alt="Retrato genérico" />
+            <h3>Nome Exemplo C — Diretor Técnico</h3>
+            <p>Lidera operações com segurança e responsabilidade socioambiental, assegurando alta performance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Clientes -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Clientes</h2>
+        <ul class="clients-logos">
+          <li><img src="assets/img/work1.svg" alt="Cliente Exemplo A" /></li>
+          <li><img src="assets/img/work2.svg" alt="Cliente Exemplo B" /></li>
+          <li><img src="assets/img/work3.svg" alt="Cliente Exemplo C" /></li>
+          <li><img src="assets/img/hero1.svg" alt="Cliente Exemplo D" /></li>
+          <li><img src="assets/img/hero2.svg" alt="Cliente Exemplo E" /></li>
+          <li><img src="assets/img/hero3.svg" alt="Cliente Exemplo F" /></li>
+        </ul>
       </div>
     </section>
 

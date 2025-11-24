@@ -227,3 +227,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     setInterval(()=>{ actIdx = (actIdx+1)%actItems.length; applyActClasses(); }, 6000);
   }
+// Timeline horizontal: navegação e arraste
+(function(){
+  const track = document.querySelector('.timeline-track .timeline.horiz');
+  const prev = document.querySelector('.timeline-prev');
+  const next = document.querySelector('.timeline-next');
+  if (!track) return;
+
+  const updateButtons = () => {
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    prev.disabled = track.scrollLeft <= 0;
+    next.disabled = track.scrollLeft >= (maxScroll - 2);
+  };
+
+  const scrollAmount = () => Math.min(340, track.clientWidth * 0.8);
+
+  prev && prev.addEventListener('click', () => {
+    track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+  });
+  next && next.addEventListener('click', () => {
+    track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+  });
+
+  let isDown = false, startX = 0, scrollLeft = 0;
+  track.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+    track.classList.add('dragging');
+  });
+  track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('dragging'); });
+  track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+  track.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX);
+    track.scrollLeft = scrollLeft - walk;
+  });
+
+  track.addEventListener('scroll', updateButtons);
+  window.addEventListener('resize', updateButtons);
+  updateButtons();
+})();
