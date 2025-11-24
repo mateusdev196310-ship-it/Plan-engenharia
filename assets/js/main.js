@@ -198,15 +198,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carrossel por páginas: mostra 3 itens por vez
     const n = actItems.length;
     let start = 0;
+    function itemsPerView(){
+      const w = window.innerWidth;
+      // Mobile: 2 itens por visão; Tablet: 2; Desktop: 3
+      return w<=680 ? 2 : (w<=960 ? 2 : 3);
+    }
     function renderPage(){
+      const k = itemsPerView();
       actItems.forEach((el,i)=>{
-        const inWindow = (i===start) || (i===(start+1)%n) || (i===(start+2)%n);
+        let inWindow = false;
+        for (let x=0; x<k; x++){
+          if (i === (start + x) % n){ inWindow = true; break; }
+        }
         el.classList.toggle('visible', inWindow);
       });
     }
     renderPage();
-    actPrev?.addEventListener('click',()=>{ start = (start-3+n)%n; renderPage(); });
-    actNext?.addEventListener('click',()=>{ start = (start+3)%n; renderPage(); });
+    window.addEventListener('resize', renderPage);
+    actPrev?.addEventListener('click',()=>{ start = (start-1+n)%n; renderPage(); });
+    actNext?.addEventListener('click',()=>{ start = (start+1)%n; renderPage(); });
+    const actRow3 = document.querySelector('.act-carousel.act-3 .act-row');
+    actRow3?.addEventListener('click',(e)=>{
+      const rect = actRow3.getBoundingClientRect();
+      const mid = rect.left + rect.width/2;
+      start = (start + (e.clientX<mid?-1:1) + n) % n;
+      renderPage();
+    });
     // ensure visible items are revealed
     setTimeout(()=>{
       document.querySelectorAll('.act-carousel.act-3 .act-item.visible').forEach(el=>{

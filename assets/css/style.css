@@ -89,6 +89,8 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .section h2{font-family:Montserrat,Arial,sans-serif;margin:0 0 .5rem}
 .section-title{font-size:1.6rem;text-transform:uppercase;letter-spacing:.08em}
 .section-title{position:relative;padding-left:1rem}
+/* Ajuste fino de alinhamento do título de seção no mobile (Quem Somos/Clientes) */
+.section .section-title{padding-left:.5rem}
 .section-title::before{content:"";position:absolute;left:0;top:.15rem;width:10px;height:28px;background:linear-gradient(180deg,var(--amber),#ffd37a);border-radius:2px;transform:skewX(-12deg);box-shadow:0 2px 8px rgba(231,164,22,.25)}
 .section-lead{color:var(--muted);margin:0 0 1.5rem}
 /* Curved separators (waves) */
@@ -146,6 +148,12 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 /* News images and meta */
 .news-item img{width:100%;height:180px;object-fit:cover;border-radius:.5rem;margin:0 0 .6rem}
 .news-meta{color:#6a7a8c;font-size:.9rem;margin:.2rem 0 .6rem}
+
+/* Legibilidade em seções escuras (Home/Imprensa) */
+.section.dark-bg .news-item{color:#eaf2fa}
+.section.dark-bg .news-item h3{color:#eaf2fa}
+.section.dark-bg .news-item p{color:#cfe3f7}
+.section.dark-bg .news-item .news-meta, .section.dark-bg .news-item time{color:#b7c9dc}
 .search-form input{width:100%;padding:.7rem 1rem;border:1px solid var(--border);border-radius:999px;background:#fff;color:#0c2136}
 
 .contact-list{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;gap:.4rem}
@@ -252,7 +260,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .map-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:contrast(.95) saturate(1.05)}
 /* Atuação: carrossel 3 painéis (layout do print) */
 .act-carousel.act-3{padding:0 0 2rem}
-.act-carousel.act-3 .act-row{gap:0;width:min(1200px,95%);margin:0 auto;align-items:stretch}
+.act-carousel.act-3 .act-row{gap:0;width:100%;margin:0;align-items:stretch}
 .act-carousel.act-3 .act-item{flex:0 0 calc(100%/3);height:62vh;border-radius:0}
 .act-carousel.act-3 .act-item{transition:filter .35s ease}
 .act-carousel.act-3 .act-item.center{filter:brightness(1.05)}
@@ -261,7 +269,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .act-carousel.act-3 .act-row{overflow:hidden}
 .act-carousel.act-3 .act-item{display:none}
 .act-carousel.act-3 .act-item.visible{display:block}
-.act-chip{position:absolute;top:1rem;left:1rem;padding:.45rem .9rem;border-radius:999px;background:rgba(17,72,116,.9);color:#eaf2fb;font-weight:700;letter-spacing:.02em;font-size:.85rem;border:1px solid var(--border)}
+.act-chip{position:absolute;top:.8rem;left:.8rem;padding:.3rem .6rem;border-radius:999px;background:rgba(134,197,230,.25);color:#062238;font-weight:700;letter-spacing:.02em;font-size:.8rem;border:1px solid rgba(134,197,230,.6);line-height:1.1;white-space:nowrap;backdrop-filter:blur(6px)}
 .act-zoom{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(12,33,54,.75);color:#cfe4f7;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);opacity:0;transition:opacity .25s ease}
 .act-carousel.act-3 .act-item.center .act-zoom{opacity:1}
 .act-carousel.act-3 .act-controls{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;justify-content:space-between;width:100%;padding:0 1rem;pointer-events:none}
@@ -461,7 +469,9 @@ body > *{ position:relative; z-index:1; }
   /* Conteúdo do herói: sem deslocamento lateral e sem ornamento diagonal */
   .hero .hero-content{margin-left:0;padding:calc(env(safe-area-inset-top, 0) + 1.2rem) 1rem 1.4rem;text-align:center}
   .hero-content::before{display:none}
-  .hero-content h1{font-size:2.4rem;letter-spacing:.16em}
+  .hero-content h1{font-size:clamp(1.6rem,7.5vw,2.4rem);letter-spacing:.10em;line-height:1.15;text-wrap:balance}
+  /* Garantir quebra de linha e largura adequada para o título em mobile */
+  .hero-tag{display:block;max-width:min(92%,640px);margin:0 auto .6rem;padding:.6rem 1rem;white-space:normal}
   .act-carousel.act-3 .act-item{height:48vh}
   .act-carousel.act-3 .act-controls{top:auto;bottom:1rem}
 }
@@ -525,9 +535,19 @@ body > *{ position:relative; z-index:1; }
   /* News: empilhar itens e ajustar altura de imagem */
   .news{grid-template-columns:1fr}
   .news-item img{height:160px}
-  /* Atuação (home): reduzir altura dos itens e baixar controles no mobile */
-  .act-carousel.act-3 .act-item{height:48vh}
+  /* Atuação (home): mobile — 1 item por visão, imagem completa */
+  .act-carousel.act-3 .act-row{overflow:hidden}
+  /* Mobile: duas por vez, grandes e sem corte */
+  .act-carousel.act-3 .act-item{flex:0 0 50%; height:68vh; aspect-ratio:auto; border-radius:12px}
+  .act-carousel.act-3 .act-item img{object-fit:cover; background:#0c2136}
   .act-carousel.act-3 .act-controls{top:auto;bottom:1rem}
+  /* Chip menor com quebra segura no mobile */
+  .act-carousel .act-chip{font-size:.9rem; padding:.35rem .6rem; white-space:normal; max-width:80%}
+}
+@media (min-width:681px) and (max-width:960px){
+  /* Tablet: 2 itens por visão, mantendo proporção confortável */
+  .act-carousel.act-3 .act-item{flex:0 0 50%; height:auto; aspect-ratio:16/9}
+  .act-carousel.act-3 .act-item img{object-fit:cover}
 }
 /* Grids: empilhamento também em tablets/telefones maiores */
 @media (max-width:960px){
@@ -641,7 +661,7 @@ body > *{ position:relative; z-index:1; }
 .act-carousel .act-item{position:relative;border-radius:28px;overflow:hidden;box-shadow:0 16px 32px rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.18);transform:translateZ(0);transition:transform .35s ease, box-shadow .35s ease}
 .act-carousel .act-item.large{transform:scale(1.06)}
 .act-carousel .act-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,33,54,.20),rgba(12,33,54,.35));}
-.act-carousel .act-chip{position:absolute;bottom:.6rem;left:.6rem;z-index:2}
+.act-carousel .act-chip{position:absolute;top:.8rem;left:.8rem;z-index:2}
 .act-carousel .act-zoom{position:absolute;top:.6rem;right:.6rem;z-index:2}
 
 /* Mídia: cards com acento de timeline */
@@ -658,6 +678,12 @@ body > *{ position:relative; z-index:1; }
   .values-list{gap:.5rem}
   .values-list li{font-size:.95rem;padding:.45rem .7rem}
 }
+
+/* Overrides: remover semiarcos, máscara elíptica e overlays exagerados */
+.hero-arc, .page-arc{display:none !important}
+.media.mask-ellipse img{clip-path:none !important;border-radius:.75rem}
+.act-carousel .act-item::before,
+.act-carousel .act-item::after{content:none !important;background:none !important}
 .timeline-track::before{
   content:"";
   position:absolute;left:0;right:0;top:50%;height:2px;
@@ -717,7 +743,7 @@ body > *{ position:relative; z-index:1; }
 .timeline.horiz .timeline-content{font-size:1.05rem;line-height:1.6}
 
 /* Clientes (maiores) */
-.clients-logos {display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;align-items:center}
+.clients-logos {display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;align-items:center;list-style:none;padding:0;margin:0}
 @media (min-width:641px){.clients-logos{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:961px){.clients-logos{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:1200px){.clients-logos{grid-template-columns:repeat(4,1fr)}}
@@ -747,6 +773,9 @@ body > *{ position:relative; z-index:1; }
 @media (min-width:961px){.founders .grid-3{grid-template-columns:repeat(2,1fr)}}
 .founders .card{padding:1.25rem;border-radius:14px}
 .founders .card img{width:100%;height:220px;object-fit:cover;border-radius:12px;margin-bottom:.75rem}
+/* Melhorar contraste de texto nos cards dos fundadores */
+.founders .card h3{color:#fff}
+.founders .card p{color:#eaf2fa}
 
 /* Texto inicial maior e bem ancorado */
 .lead-text{max-width:68ch;margin:0 auto}
