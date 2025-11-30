@@ -86,12 +86,49 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .section.slate-bg{background:#0e2035}
 .section + .section{border-top:1px solid var(--border)}
 .section + .section{border-top:1px solid var(--border)}
-.section h2{font-family:Montserrat,Arial,sans-serif;margin:0 0 .5rem}
-.section-title{font-size:1.6rem;text-transform:uppercase;letter-spacing:.08em}
-.section-title{position:relative;padding-left:1rem}
+
+.section h2 {
+  font-family: Montserrat, Arial, sans-serif;
+  margin: 0 0 .5rem
+}
+
+.section-title {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: .08em
+}
+
+.section-title {
+  position: relative;
+  padding-left: 1rem
+}
+
 /* Ajuste fino de alinhamento do título de seção no mobile (Quem Somos/Clientes) */
-.section .section-title{padding-left:.5rem}
-.section-title::before{content:"";position:absolute;left:0;top:.15rem;width:10px;height:28px;background:linear-gradient(180deg,var(--amber),#ffd37a);border-radius:2px;transform:skewX(-12deg);box-shadow:0 2px 8px rgba(231,164,22,.25)}
+.section .section-title {
+  padding-left: 1.5rem
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .15rem;
+  width: 10px;
+  height: 28px;
+  background: linear-gradient(180deg, var(--amber), #ffd37a);
+  border-radius: 2px;
+  transform: skewX(-12deg);
+  box-shadow: 0 2px 8px rgba(231, 164, 22, .25)
+}
+
+.global-title {
+  display: flex;
+  justify-content: center;
+  /* max-height: 5%; */
+  font-size: clamp(3rem, 4vw, 6rem);
+  letter-spacing: 0.32em;
+}
+
 .section-lead{color:var(--muted);margin:0 0 1.5rem}
 /* Curved separators (waves) */
 .section-wave{position:relative;height:80px;display:block}
@@ -209,17 +246,73 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 }
 
 /* Page hero */
-.page-hero{position:relative;padding:7rem 0;min-height:50vh;display:grid;align-items:center;background-position:center;background-size:cover;background-repeat:no-repeat}
-.page-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(8,16,24,.35),rgba(8,16,24,.4));opacity:.9}
-.page-hero .container{position:relative; z-index:2}
-.big-outline{font-size:clamp(4rem,12vw,8.5rem);text-transform:uppercase;color:#0e1e30;opacity:.38;position:absolute;left:clamp(.5rem,4vw,2rem);top:clamp(.4rem,2vw,1rem);font-family:Montserrat,Arial,sans-serif;pointer-events:none}
-/* Semiarco para páginas internas */
-.page-arc{position:absolute;left:0;top:0;width:100%;height:120px;z-index:1;pointer-events:none}
-/* Home: Obras em Progresso */
-.work-section{background:var(--bg);padding:4rem 0 3rem}
-.work-section .container h2{color:var(--text);margin-bottom:2rem;text-transform:uppercase;letter-spacing:.08em;text-align:center;font-size:2.25rem}
-.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.page-hero {
+  position: relative;
+  padding: 7rem 0;
+  min-height: 50vh;
+  display: grid;
+  align-items: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat
+}
 
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(8, 16, 24, .35), rgba(8, 16, 24, .4));
+  opacity: .9
+}
+
+.page-hero .container {
+  position: relative;
+  z-index: 2
+}
+
+.big-outline {
+  font-size: clamp(4rem, 12vw, 8.5rem);
+  text-transform: uppercase;
+  color: #0e1e30;
+  opacity: .38;
+  position: absolute;
+  left: clamp(.5rem, 4vw, 2rem);
+  top: clamp(.4rem, 2vw, 1rem);
+  font-family: Montserrat, Arial, sans-serif;
+  pointer-events: none
+}
+
+/* Semiarco para páginas internas */
+.page-arc {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  z-index: 1;
+  pointer-events: none
+}
+
+/* Home: Obras em Progresso */
+.work-section {
+  background: var(--bg);
+  padding: 4rem 0 3rem
+}
+
+.work-section .container h2 {
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  text-align: center;
+  font-size: 2.25rem
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem
+}
 /* Atividades: Galeria de fotos grandes */
 .act-gallery{position:relative;background:linear-gradient(180deg,#0c2136,#0a1724);}
 .act-slide{position:relative;height:68vh;display:grid;place-items:end;background-position:center;background-size:cover;background-repeat:no-repeat}
@@ -510,10 +603,28 @@ body > *{ position:relative; z-index:1; }
 }
 
 /* Page hero em tela cheia no mobile */
-@media (max-width:680px){
-  .page-hero{padding:0;min-height:100vh;min-height:100dvh;min-height:100svh;display:grid;align-items:center;background-position:center;background-size:cover;background-repeat:no-repeat}
-.page-hero .container{padding:0 1rem;text-align:center; z-index:2}
-  .page-arc{display:none}
+@media (max-width:680px) {
+  .page-hero {
+    padding: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat
+  }
+
+  .page-hero .container {
+    padding: 0 1rem;
+    text-align: center;
+    z-index: 2
+  }
+
+  .page-arc {
+    display: none
+  }
 }
 
 /* Botões e controles: reduzir no mobile e evitar corte */
@@ -562,6 +673,7 @@ body > *{ position:relative; z-index:1; }
   .section-lead{font-size:1.1rem;line-height:1.6}
   .container{width:min(1100px,94%)}
 }
+
 /* Quem Somos Hero refinado */
 .page-hero.quem-somos {
   background-image: url('../img/trator.jpg');
@@ -597,7 +709,7 @@ body > *{ position:relative; z-index:1; }
 .page-hero.quem-somos .page-arc{ display:none; }
 @media (min-width: 961px) {
   .page-hero.quem-somos .big-outline {
-    font-size: clamp(4.5rem, 9vw, 8rem);
+    font-size: clamp(4.5rem, 6vw, 8rem);
     letter-spacing: 0.02em;
   }
 }
@@ -612,6 +724,144 @@ body > *{ position:relative; z-index:1; }
     font-size: clamp(2.6rem, 12vw, 4.8rem);
     top: 16%;
   }
+}
+
+/* Atuação Hero refinado */
+.page-hero.atuacao {
+  background-image: url('../img/trator.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 58vh;
+  padding: 0;
+}
+.page-hero.atuacao::before{opacity:.25}
+.page-hero.atuacao .hero-art {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 600px at 10% 20%, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(900px 500px at 80% 10%, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0) 65%),
+    radial-gradient(700px 400px at 60% 80%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%);
+  pointer-events: none;
+}
+.page-hero.atuacao .page-title { display: none; }
+.page-hero.atuacao .big-outline {
+  opacity: 0.5;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 12%;
+  white-space: nowrap;
+}
+/* Oculta o semiarco para manter visual minimalista como o home */
+.page-hero.atuacao .page-arc {
+  display: none;
+}
+@media (min-width: 961px) {
+  .page-hero.atuacao .big-outline {
+    font-size: clamp(4.5rem, 6vw, 8rem);
+    letter-spacing: 0.02em;
+  }
+}
+@media (min-width: 681px) and (max-width: 960px) {
+  .page-hero.atuacao .big-outline {
+    font-size: clamp(3.6rem, 8vw, 7rem);
+  }
+}
+@media (max-width: 680px) {
+  .page-hero.atuacao { min-height: 72vh; }
+  .page-hero.atuacao .big-outline {
+    font-size: clamp(2.6rem, 12vw, 4.8rem);
+    top: 16%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .card-area-link img {
+    width: 450px !important;
+    height: auto !important;
+  }
+}
+@media (max-width: 768px) {
+  .card-area-link img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .segmentos {
+    flex-direction: column;
+    gap: 15px;
+  }  
+}
+@media (max-width: 640px) {
+
+}
+
+.segmentos {
+  display: flex;
+  gap: 10px;
+}
+
+.segmentos .lead-text {
+  max-width: none;
+}
+
+.segmentos .lead-text p {
+  text-align: center;
+}
+
+.segmentos .container {
+  max-width: none;
+  width: 100%;
+}
+
+.card-area-item-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.card-area-link {
+  display: block;
+}
+
+.card-area-link img {
+  display: block;
+  width: 600px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.lupa-icon {
+  font-size: 30px;
+  font-weight: 100;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 70, 134, .84);
+}
+
+.fa {
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
 }
 
 /* Marca dentro do hero */
