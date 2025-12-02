@@ -129,6 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroContent = document.querySelector('.hero-slide .hero-content') || document.querySelector('.page-hero .container');
   const onScroll = () => {
     if (!heroContent) return;
+    // Desativa parallax para páginas internas (page-hero) em telas até 960px
+    const inPageHero = !!heroContent.closest('.page-hero');
+    if (inPageHero && window.matchMedia('(max-width: 960px)').matches) return;
     const offset = Math.min(24, window.scrollY * 0.06);
     heroContent.style.transform = `translateY(${offset}px)`;
   };

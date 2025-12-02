@@ -394,7 +394,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 
 .page-hero .container {
   position: relative;
-  z-index: 2
+  z-index: 4
 }
 
 .big-outline {
@@ -419,6 +419,9 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
   z-index: 1;
   pointer-events: none
 }
+
+/* Garantir que os overlays do hero fiquem abaixo do conteúdo */
+.page-hero::before, .page-hero::after { z-index: 1; }
 
 /* Home: Obras em Progresso */
 .work-section {
@@ -857,6 +860,37 @@ body > *{ position:relative; z-index:1; }
     font-size: clamp(2.6rem, 12vw, 4.8rem);
     top: clamp(10rem, 36vh, 40rem);
   }
+}
+
+/* Mobile: garantir que o título translúcido apareça acima das camadas */
+@media (max-width: 680px) {
+  /* Ancorar o posicionamento do título ao próprio hero */
+  .page-hero .container { position: static; transform: none !important; }
+  .page-hero.quem-somos, .page-hero.atuacao { align-items: start; min-height: 78vh; }
+  /* Safari/iOS: desativar blend overlay que pode apagar texto em alguns devices */
+  .page-hero::after { display: none !important; }
+  /* Evitar recortes do título por overflow do hero */
+  .page-hero.quem-somos,
+  .page-hero.atuacao { overflow: visible; }
+  .page-hero.quem-somos .big-outline,
+  .page-hero.atuacao .big-outline {
+    display: block !important;
+    position: absolute !important;
+    left: 50%;
+    transform: translateX(-50%);
+    top: clamp(6rem, 24vh, 28rem);
+    line-height: 1.05;
+    z-index: 9;
+    opacity: .62;
+    color: rgba(255,255,255,0.96);
+    text-shadow: 0 3px 18px rgba(0,0,0,0.28);
+    white-space: normal;
+  }
+}
+
+/* Tablet e mobile grande: também evitar overlay misto que pode sumir texto */
+@media (max-width: 960px) {
+  .page-hero::after { display: none !important; }
 }
 
 /* Atuação Hero refinado */
