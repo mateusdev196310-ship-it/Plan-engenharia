@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Plan Engenharia | Obras</title>
+<title>Plan Engenharia | Obras</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body class="theme-dark home-no-header">
-    <!-- =========== Menu Desktop =========== -->
+    <!-- =========== Menu Desktop (igual ao Index) =========== -->
     <header class="site-header wedge">
       <div class="topbar">
         <div class="container topbar-inner"><a class="brand" href="index.html">PLAN Engenharia</a>
@@ -16,7 +16,8 @@
         </div>
       </div>
       <div class="container header-inner">
-        <nav class="nav"><button class="nav-toggle">☰</button>
+        <nav class="nav" aria-label="Navegação principal">
+          <button class="nav-toggle" aria-label="Abrir menu">☰</button>
           <ul class="nav-list">
             <li><a href="index.html">Início</a></li>
             <li><a href="sobre.html">Sobre</a></li>
@@ -28,65 +29,410 @@
         </nav>
       </div>
     </header>
-    <!-- =========== Menu Mobile =========== -->
-    <section class="page-hero obras-hero" style="background-image:url('assets/img/trator.jpg')">
-      <div class="hero-art" aria-hidden="true"></div>
-      <a class="hero-logo" href="index.html" aria-label="PLAN Engenharia">
-        <img src="assets/img/plan-logo.svg" alt="PLAN Engenharia" />
-      </a>
+
+    <!-- Herói com fundo de andaimes e texto grande translucido -->
+    <section class="sian-hero" aria-label="Herói Obras">
+      <div class="hero-backdrop"></div>
+      <!-- Navegação horizontal sobre o herói -->
       <nav class="hero-topnav" aria-label="Navegação principal">
         <a href="index.html">Início</a>
         <a href="sobre.html">Quem Somos</a>
         <a href="atuacao.html">Atuação</a>
-        <a href="obras.html" class="active">Obras</a>
+      <a href="obras.html" class="active">Obras</a>
         <a href="press.html">Mídia</a>
         <a href="contato.html">Contatos</a>
       </nav>
+    <div class="hero-overlay-text">Obras</div>
       <svg class="hero-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <linearGradient id="arcGrad" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stop-color="#123053" />
-            <stop offset="100%" stop-color="#0c2136" />
+            <stop offset="0%" stop-color="#123053"/>
+            <stop offset="100%" stop-color="#0c2136"/>
           </linearGradient>
         </defs>
         <path d="M0,12 Q50,-20 100,12 L100,0 L0,0 Z" fill="url(#arcGrad)" opacity=".55" />
       </svg>
-      <div class="container">
-        <h1 class="big-outline">obras</h1>
-        <h2>Obras</h2>
-      </div>
     </section>
 
-    <section class="work-section section diagonal">
+    <!-- Carrossel de obras no estilo SIAN -->
+    <section class="section navy-bg">
       <div class="container">
-        <h2 class="section-title">Obras</h2>
-        <div class="work-grid">
-          <article class="work-card">
-            <div class="work-head">Escola de Tempo Integral Navarro de Brito — Jequié (BA)</div>
-            <img src="assets/img/work1.svg" alt="Escola de Tempo Integral Navarro de Brito — Jequié (BA)" />
-            <div class="work-body">
-              <p>Execução das obras de Implantação da Escola de Tempo Integral Navarro de Brito, localizada na Av. Ulisses Coelho Lima, no município de Jequié, através de Subempreitada total dos serviços, composto de Módulo Pedagógico com 12 salas de aula, Refeitório, Auditório, Quadra Poliesportiva Coberta, Campo Society, Pista de Atletismo, Subestação de Energia, Usina Fotovoltaica, dentre outros.</p>
+        <div class="works-carousel" aria-label="Carrossel de obras">
+          <!-- Slide 1 -->
+          <div class="work-slide active" data-slide="0">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Foto principal da obra — exemplo com trator" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Escola de Tempo Integral Navarro de Brito – Jequié (BA)</h3>
+                  <p>Execução das obras de implantação da Escola de Tempo Integral Navarro de Brito, com módulo pedagógico de 12 salas, refeitório, auditório, quadra coberta, campo society, pista de atletismo, subestação de energia e usina fotovoltaica.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
             </div>
-          </article>
-          <article class="work-card">
-            <div class="work-head">Escola de Tempo Integral — Brejões (BA), Distrito de Serrana</div>
-            <img src="assets/img/work2.svg" alt="Escola de Tempo Integral — Brejões (BA), Distrito de Serrana" />
-            <div class="work-body">
-              <p>Execução das obras de Implantação da Escola de Tempo Integral do Município de Brejões, localizada no Distrito de Serrana (Km 100), através de Subempreitada total dos serviços, composto de Módulo Pedagógico com 8 salas de aula, Refeitório, Auditório, Piscina com dimensões de 25m x 12,5m, Quadra Poliesportiva Coberta, Campo Society, Subestação de Energia, dentre outros.</p>
+            <div class="container">
+              <div class="thumbs-row">
+        <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
             </div>
-          </article>
-          <article class="work-card">
-            <div class="work-head">Faculdade Anhanguera (antiga Pitágoras) — Jequié (BA)</div>
-            <img src="assets/img/work3.svg" alt="Faculdade Anhanguera (antiga Pitágoras) — Jequié (BA)" />
-            <div class="work-body">
-              <p>Execução de parte das obras civis para a implantação da Faculdade Pitágoras, atualmente Faculdade Anhanguera, em Jequié – BA, compreendendo os serviços preliminares, como implantação do canteiro de obras, escavações, preparo para fundações, execução das vigas baldrames (518,53m ou 51,85 m³), dentre outros; alvenaria de fechamento com blocos de concreto (3.060,18 m²); serviços de estrutura de concreto, como forma (414,25 m²), armadura (22.956,21Kg) e aplicação do concreto (65 m³); assentamento de portas (89 un) e esquadrias das janelas (207 un), além de diversos serviços complementares de apoio à obra.</p>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="work-slide" data-slide="1">
+            <div class="work-banner container">
+              <img class="banner-img" src="assets/img/obras/canada-4349452_1920.jpg" alt="Foto principal da obra de Brejões (BA)" />
+              <div class="banner-overlay"></div>
+              <div class="banner-info">
+                <h3>Escola de Tempo Integral – Brejões (BA), Distrito de Serrana</h3>
+                <p>Implantação da Escola de Tempo Integral de Brejões (Distrito de Serrana), com módulo pedagógico de 8 salas, refeitório, auditório, piscina semiolímpica, quadra coberta, campo society e subestação de energia.</p>
+                <a class="btn btn-primary" href="#">Veja Mais</a>
+              </div>
             </div>
-          </article>
+            <div class="container">
+              <div class="thumbs-row">
+        <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="work-slide" data-slide="2">
+            <div class="work-banner container">
+              <img class="banner-img" src="assets/img/obras/crane-5488245_1920.jpg" alt="Foto principal da obra Faculdade Anhanguera" />
+              <div class="banner-overlay"></div>
+              <div class="banner-info">
+                <h3>Faculdade Anhanguera (antiga Pitágoras) – Jequié (BA)</h3>
+                <p>Execução de parte das obras civis para implantação da Faculdade Anhanguera, incluindo serviços preliminares, alvenaria com blocos de concreto, estrutura de concreto, assentamento de portas e esquadrias, e diversos serviços complementares.</p>
+                <a class="btn btn-primary" href="#">Veja Mais</a>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+        <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Removido: navegação por bolinhas; os slides agora ficam empilhados -->
+          
+          <!-- Slide 4: Ala Pediátrica HRPV (Jequié-BA) -->
+          <div class="work-slide" data-slide="3">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/foundation-2660502_1920.jpg" alt="Ala Pediátrica do Hospital Regional Prado Valadares, Jequié-BA" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Ala Pediátrica – Hospital Regional Prado Valadares, Jequié (BA)</h3>
+                  <p>Execução de parte das obras civis para implantação da Ala Pediátrica do Hospital Regional Prado Valadares, cliente Consórcio SIAN/CDG, incluindo canteiro de obras, terraplanagem, preparo para fundações, demolições e bota fora, estrutura de concreto, alvenaria de fechamento em blocos de concreto, assentamento de portas e serviços complementares.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 5: Posto Rosa Flor (Jequié-BA) -->
+          <div class="work-slide" data-slide="4">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Implantação do Posto Rosa Flor em Jequié-BA" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Posto Rosa Flor – Jequié (BA)</h3>
+                  <p>Implantação do Posto Rosa Flor, com 125 m³ de contenções em alvenaria de pedra, 2.500 m³ de terraplenagem (aterro compactado), 180 m² de construção civil em pavimento único, 700 m² de pavimentação e urbanização.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 6: Recuperação de estruturas – Mirabela Mineração -->
+          <div class="work-slide" data-slide="5">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/canada-4349452_1920.jpg" alt="Recuperação de estruturas na moega do Britador Principal – Mirabela" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Recuperação de estruturas na moega do Britador – Mirabela Mineração</h3>
+                  <p>Serviço de recuperação das estruturas de concreto armado danificadas na moega do Britador Principal, com corte, dobra e tratamento de armaduras corroídas, reposição conforme projeto, preenchimento de piso e paredes com Grout e fixação de chapas Hadox de 2” como proteção mecânica e forma para aplicação de Grout.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 7: Pavimentação e Drenagem – Rua Humaitá (Jequié-BA) -->
+          <div class="work-slide" data-slide="6">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/crane-5488245_1920.jpg" alt="Pavimentação e drenagem da Rua Humaitá, Jequié-BA" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Pavimentação e Drenagem – Rua Humaitá, Jequié (BA)</h3>
+                  <p>Pavimentação e drenagem da Rua Humaitá, no bairro Mandacaru, Jequié-BA, contratante Prefeitura Municipal de Jequié.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/photo2.svg" alt="Thumb 5" />
+                  <img src="assets/img/work1.svg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 8: Loteamento Morro do Ouro (Jacobina-BA) -->
+          <div class="work-slide" data-slide="7">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/foundation-2660502_1920.jpg" alt="Implantação do Loteamento Residencial Morro do Ouro – Jacobina-BA" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Loteamento Residencial Morro do Ouro – Jacobina (BA)</h3>
+                  <p>Implantação do loteamento com 450 lotes, abrangendo projeto geométrico, terraplenagem, redes e ligações domiciliares de água e esgoto, drenagem pluvial e pavimentação em TSD (50.000 m²), execução de meio-fios, entre outros.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 9: Pavimentação em TSD – Acesso a Itaetê (BA) -->
+          <div class="work-slide" data-slide="8">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Pavimentação em TSD no acesso a Itaetê-BA" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Pavimentação em TSD – Acesso a Itaetê (BA)</h3>
+                  <p>Pavimentação em TSD do acesso ao município de Itaetê-BA (8,4 km) e pavimentação em paralelepípedos ao longo da travessia urbana (1,7 km).</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 10: SES Macururé (BA) – CODEVASF -->
+          <div class="work-slide" data-slide="9">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Sistema de Esgotamento Sanitário de Macururé-BA – CODEVASF" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Sistema de Esgotamento Sanitário – Macururé (BA) – CODEVASF</h3>
+                  <p>Execução de 16.233 m de rede coletora, 2 Estações Elevatórias, 4 Lagoas de Estabilização e 1 DAFA, entre outras atividades do sistema de esgotamento sanitário.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 11: SES Glória (BA) – CODEVASF -->
+          <div class="work-slide" data-slide="10">
+            <div class="work-banner container">
+              <div class="banner-frame">
+                <img class="banner-img" src="assets/img/obras/canada-4349452_1920.jpg" alt="Sistema de Esgotamento Sanitário de Glória-BA – CODEVASF" />
+                <div class="banner-overlay"></div>
+                <div class="banner-info">
+                  <h3>Sistema de Esgotamento Sanitário – Glória (BA) – CODEVASF</h3>
+                  <p>Execução de 11.625 m de rede coletora, 3 Estações Elevatórias, 4 Lagoas de Estabilização e 1 DAFA, compondo o sistema de esgotamento sanitário do município.</p>
+                  <a class="btn btn-primary" href="#">Veja Mais</a>
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="thumbs-row">
+                <div class="work-thumbs scroller" aria-label="Miniaturas da obra">
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 1" />
+                  <img src="assets/img/obras/foundation-2660502_1920.jpg" alt="Thumb 2" />
+                  <img src="assets/img/obras/construction-site-1646662_1920.jpg" alt="Thumb 3" />
+                  <img src="assets/img/obras/construction-site-2882416_1920.jpg" alt="Thumb 4" />
+                  <img src="assets/img/obras/canada-4349452_1920.jpg" alt="Thumb 5" />
+                  <img src="assets/img/obras/crane-5488245_1920.jpg" alt="Thumb 6" />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> Plan Engenharia Ltda</p></div></footer>
     <script src="assets/js/main.js"></script>
-  </body>
+<script>
+  (function(){
+    const container = document.querySelector('.works-carousel');
+    if (!container) return;
+    const existingTitles = Array.from(container.querySelectorAll('.banner-info h3'))
+      .map(h => h.textContent.trim().toLowerCase());
+      const imgPool = [
+        'assets/img/obras/canada-4349452_1920.jpg',
+        'assets/img/obras/construction-site-1646662_1920.jpg',
+        'assets/img/obras/construction-site-2882416_1920.jpg',
+        'assets/img/obras/crane-5488245_1920.jpg',
+        'assets/img/obras/foundation-2660502_1920.jpg'
+      ];
+    function makeThumbs(i){
+      const thumbs = document.createElement('div');
+      thumbs.className = 'thumbs-row';
+      const row = document.createElement('div');
+      row.className = 'work-thumbs';
+      for (let k = 0; k < 6; k++) {
+        const img = document.createElement('img');
+        img.src = imgPool[(i + k) % imgPool.length];
+        img.alt = 'Miniatura da obra';
+        row.appendChild(img);
+      }
+      thumbs.appendChild(row);
+      return thumbs;
+    }
+    function createSlide(title, index){
+      const slide = document.createElement('div');
+      slide.className = 'work-slide';
+      const banner = document.createElement('div');
+      banner.className = 'work-banner';
+      const frame = document.createElement('div');
+      frame.className = 'banner-frame';
+      const img = document.createElement('img');
+      img.className = 'banner-img';
+      img.src = imgPool[index % imgPool.length];
+      img.alt = title;
+      const overlay = document.createElement('div');
+      overlay.className = 'banner-overlay';
+      const info = document.createElement('div');
+      info.className = 'banner-info';
+      const h3 = document.createElement('h3');
+      h3.textContent = title;
+      const p = document.createElement('p');
+      p.textContent = 'Obra listada no Portfólio PLAN (mar/2025).';
+      info.appendChild(h3);
+      info.appendChild(p);
+      frame.appendChild(img);
+      banner.appendChild(frame);
+      banner.appendChild(overlay);
+      banner.appendChild(info);
+      slide.appendChild(banner);
+      slide.appendChild(makeThumbs(index));
+      return slide;
+    }
+    function normalizeTitle(line){
+      return line.replace(/\s+/g,' ').trim();
+    }
+    fetch('assets/obras/portfolio_extracted/candidates_works.txt')
+      .then(r => r.ok ? r.text() : '')
+      .then(txt => {
+        if (!txt) return;
+        const lines = txt.split(/\r?\n/).map(normalizeTitle).filter(Boolean);
+        const newTitles = lines.filter(l => !existingTitles.includes(l.toLowerCase()));
+        let count = 0;
+        newTitles.forEach((title, idx) => {
+          const slide = createSlide(title, idx);
+          container.appendChild(slide);
+          count++;
+        });
+        console.log(`Adicionadas ${count} obras do portfólio (sem duplicar).`);
+      })
+      .catch(err => console.warn('Falha ao carregar obras do portfólio:', err));
+  })();
+</script>
+</body>
 </html>

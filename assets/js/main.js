@@ -4,11 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.nav-list');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => nav.classList.toggle('open'));
-    nav.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') nav.classList.remove('open');
-    });
+  const heroTopnav = document.querySelector('.hero-topnav');
+  if (toggle) {
+    // Desktop header menu
+    if (nav) {
+      toggle.addEventListener('click', () => nav.classList.toggle('open'));
+      nav.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') nav.classList.remove('open');
+      });
+    } else if (heroTopnav) {
+      // Mobile-only hero nav: toggles a global menu-open state
+      const body = document.body;
+      toggle.addEventListener('click', () => {
+        const open = body.classList.toggle('menu-open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      heroTopnav.addEventListener('click', (e) => {
+        const t = e.target;
+        if (t && t.tagName === 'A') {
+          document.body.classList.remove('menu-open');
+          toggle.setAttribute('aria-expanded','false');
+        }
+      });
+    }
   }
 
   // Smooth scroll
@@ -149,6 +167,123 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Removido: tilt das engrenagens (reversão solicitada)
 });
+
+// Obras: carrossel estilo SIAN (slides com dots)
+document.addEventListener('DOMContentLoaded', () => {
+  // Sincroniza a largura exata do banner com a variável CSS --banner-w
+  const setBannerVar = () => {
+    const activeBanner = document.querySelector('.work-slide.active .banner-frame') || document.querySelector('.banner-frame');
+    const container = document.querySelector('.works-carousel .container') || document.querySelector('.works-carousel');
+    if (!activeBanner && !container) return;
+    let w = activeBanner ? Math.round(activeBanner.getBoundingClientRect().width) : 0;
+    if (!w || w < 10) {
+      const cw = container ? Math.round(container.getBoundingClientRect().width) : 0;
+      const vw = Math.round((document.documentElement.clientWidth || window.innerWidth) * 0.92);
+      w = Math.max(320, cw || vw);
+    }
+    document.documentElement.style.setProperty('--banner-w', `${w}px`);
+  };
+  setBannerVar();
+  window.addEventListener('load', setBannerVar);
+  window.addEventListener('resize', setBannerVar);
+
+  const carousel = document.querySelector('.works-carousel');
+  if (!carousel) return;
+  const slides = Array.from(carousel.querySelectorAll('.work-slide'));
+  const dots = Array.from(carousel.querySelectorAll('.dot'));
+  let current = 0;
+  const show = (i) => {
+    current = Math.max(0, Math.min(i, slides.length - 1));
+    slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+    setBannerVar(); // atualizar var quando muda slide
+  };
+  dots.forEach((d) => {
+    d.addEventListener('click', () => {
+      const t = parseInt(d.getAttribute('data-target') || '0', 10);
+      show(t);
+    });
+  });
+  show(0);
+
+  // Thumbnails horizontal scroller per slide (prev/next buttons)
+  slides.forEach(slide => {
+    const row = slide.querySelector('.thumbs-row');
+    if (!row) return;
+    const scroller = row.querySelector('.work-thumbs.scroller');
+    const prev = row.querySelector('.thumbs-prev');
+    const next = row.querySelector('.thumbs-next');
+    if (scroller && prev && next) {
+      const first = scroller.querySelector('img');
+      const styles = getComputedStyle(scroller);
+      const gap = parseFloat(styles.gap || styles.columnGap || '0');
+      const base = first ? first.getBoundingClientRect().width : 240;
+      const step = Math.max(120, Math.round(base + gap));
+      prev.addEventListener('click', () => scroller.scrollBy({ left: -step, behavior: 'smooth' }));
+      next.addEventListener('click', () => scroller.scrollBy({ left: step, behavior: 'smooth' }));
+    }
+    // Arraste com mouse/touch para deslizar thumbnails
+    if (scroller) {
+      let isDown = false, startX = 0, startScroll = 0;
+      const onDown = (clientX) => { isDown = true; startX = clientX; startScroll = scroller.scrollLeft; scroller.classList.add('dragging'); };
+      const onMove = (clientX) => { if (!isDown) return; const dx = clientX - startX; scroller.scrollLeft = startScroll - dx; };
+      const onUp = () => { isDown = false; scroller.classList.remove('dragging'); };
+      // Mouse
+      scroller.addEventListener('mousedown', (e) => { e.preventDefault(); onDown(e.clientX); });
+      window.addEventListener('mousemove', (e) => onMove(e.clientX));
+      window.addEventListener('mouseup', onUp);
+      // Touch
+      scroller.addEventListener('touchstart', (e) => { if (e.touches && e.touches[0]) onDown(e.touches[0].clientX); }, {passive:true});
+      scroller.addEventListener('touchmove', (e) => { if (e.touches && e.touches[0]) onMove(e.touches[0].clientX); }, {passive:true});
+      scroller.addEventListener('touchend', onUp);
+      scroller.addEventListener('mouseleave', onUp);
+    }
+  });
+
+  // Modal: abrir descrição da obra ao clicar em "Veja Mais"
+  const openModal = (title, desc) => {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop show';
+    backdrop.setAttribute('aria-hidden','false');
+    const panel = document.createElement('div');
+    panel.className = 'modal-panel';
+    const h = document.createElement('h3');
+    h.textContent = title || 'Detalhes da obra';
+    const p = document.createElement('p');
+    p.textContent = desc || 'Descrição indisponível.';
+    const close = document.createElement('button');
+    close.className = 'modal-close';
+    close.type = 'button';
+    close.textContent = 'Fechar';
+    panel.appendChild(close);
+    panel.appendChild(h);
+    panel.appendChild(p);
+    document.body.appendChild(backdrop);
+    document.body.appendChild(panel);
+    const cleanup = () => {
+      panel.remove();
+      backdrop.remove();
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+    const onKey = (e) => { if (e.key === 'Escape') cleanup(); };
+    backdrop.addEventListener('click', cleanup);
+    close.addEventListener('click', cleanup);
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  };
+  slides.forEach(slide => {
+    const btn = slide.querySelector('.banner-info .btn');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const title = slide.querySelector('.banner-info h3')?.textContent.trim();
+      const desc = slide.querySelector('.banner-info p')?.textContent.trim();
+      openModal(title, desc);
+    });
+  });
+});
 // Animations: reveal on scroll
 document.addEventListener('DOMContentLoaded', () => {
   const candidates = Array.from(document.querySelectorAll(
@@ -164,6 +299,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   },{root:null, threshold:0.15});
   candidates.forEach(el=>io.observe(el));
+  // Fallback: garantir que a primeira seção visível (acima da borda) não fique transparente
+  const seedVisible = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    candidates.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (!el.classList.contains('in')) {
+        const visible = r.top < vh * 0.95 && r.bottom > 0;
+        if (visible) el.classList.add('in');
+      }
+    });
+    const wc = document.querySelector('.works-carousel');
+    if (wc) {
+      const sec = wc.closest('.section');
+      if (sec) sec.classList.add('in');
+    }
+  };
+  seedVisible();
+  window.addEventListener('load', seedVisible, { once: true });
 });
   // Atividades: Galeria simples
   // Atividades: Carrossel horizontal com item central maior
@@ -244,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     setInterval(()=>{ actIdx = (actIdx+1)%actItems.length; applyActClasses(); }, 6000);
   }
-// Timeline horizontal: navegação e arraste
+  // Timeline horizontal: navegação e arraste
 (function(){
   const track = document.querySelector('.timeline-track .timeline.horiz');
   const prev = document.querySelector('.timeline-prev');
