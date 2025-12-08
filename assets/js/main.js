@@ -171,6 +171,165 @@ document.addEventListener('DOMContentLoaded', () => {
   // Removido: tilt das engrenagens (reversão solicitada)
 });
 
+// Abrir modal
+document.querySelectorAll('[data-modal-target]').forEach(button => {
+  button.addEventListener('click', () => {
+    const modalId = button.dataset.modalTarget;
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden'; // evita scroll de fundo
+    }
+  });
+});
+
+// Fechar modal Atuação
+document.querySelectorAll('[data-close-modal]').forEach(button => {
+  button.addEventListener('click', () => {
+    const modal = button.closest('.modal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = ''; // restaura scroll
+    }
+  });
+});
+
+// Fechar com ESC Modal da Page Atuação
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    const modal = document.querySelector('.modal.active');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+});
+
+// Carrossel com arrasto (mouse e touch) da Page Atuação
+document.querySelectorAll('[data-carousel-track]').forEach(track => {
+  const slides = Array.from(track.children);
+  const nav = track.closest('.carousel-wrapper').querySelector('[data-carousel-nav]');
+  let currentIndex = 0;
+  let startX = 0;
+  let currentX = 0;
+  let translateX = 0;
+  let isDragging = false;
+  let isDown = false; // estado do mouse
+
+  // Criar bolinhas
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+    dot.addEventListener('click', () => goToSlide(i));
+    nav.appendChild(dot);
+  });
+
+  const dots = nav.querySelectorAll('button');
+  updateCarousel();
+
+  // === Funções principais ===
+  function goToSlide(index) {
+    currentIndex = index;
+    updateCarousel();
+  }
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  // === Arrasto com mouse ===
+  track.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - track.offsetLeft;
+    translateX = -currentIndex * track.offsetWidth;
+    track.classList.add('dragging');
+    e.preventDefault(); // evita seleção de texto
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    isDragging = true;
+    currentX = e.pageX - track.offsetLeft;
+    const diff = currentX - startX;
+    track.style.transform = `translateX(${translateX + diff}px`;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    track.classList.remove('dragging');
+    isDown = false;
+
+    if (isDragging) {
+      const diff = currentX - startX;
+      const threshold = track.offsetWidth * 0.2; // 20% do slide
+
+      if (diff > threshold && currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      } else if (diff < -threshold && currentIndex < slides.length - 1) {
+        goToSlide(currentIndex + 1);
+      } else {
+        // Volta suavemente para o slide atual
+        updateCarousel();
+      }
+    }
+    isDragging = false;
+  });
+
+  // === Arrasto com toque (mobile) ===
+  track.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].clientX - track.offsetLeft;
+    translateX = -currentIndex * track.offsetWidth;
+    track.classList.add('dragging');
+    e.preventDefault();
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    isDragging = true;
+    currentX = e.touches[0].clientX - track.offsetLeft;
+    const diff = currentX - startX;
+    track.style.transform = `translateX(${translateX + diff}px`;
+  });
+
+  window.addEventListener('touchend', () => {
+    if (!isDown) return;
+    track.classList.remove('dragging');
+    isDown = false;
+
+    if (isDragging) {
+      const diff = currentX - startX;
+      const threshold = track.offsetWidth * 0.2;
+
+      if (diff > threshold && currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      } else if (diff < -threshold && currentIndex < slides.length - 1) {
+        goToSlide(currentIndex + 1);
+      } else {
+        updateCarousel();
+      }
+    }
+    isDragging = false;
+  });
+
+  // === Navegação com teclado (acessibilidade) ===
+  track.closest('.modal-content').addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      if (currentIndex > 0) goToSlide(currentIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+    }
+  });
+
+  // === Impedir seleção acidental durante arrasto ===
+  track.style.userSelect = 'none';
+});
+
 // Obras: carrossel estilo SIAN (slides com dots)
 document.addEventListener('DOMContentLoaded', () => {
   // Sincroniza a largura exata do banner com a variável CSS --banner-w
