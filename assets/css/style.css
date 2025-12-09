@@ -1385,3 +1385,24 @@ body > *{ position:relative; z-index:1; }
 .values-list li::before{content:"✓";position:absolute;left:.6rem;top:.55rem;color:#00b3ff;font-weight:800}
 .values-list li{padding-left:1.8rem}
 .works-carousel .container{width:100%;max-width:none}
+.contact-section .container{display:block}
+.icon-strip{display:flex;gap:.8rem;justify-content:center;margin-bottom:1rem}
+.icon-strip a{width:64px;height:64px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(14,40,69,.65),rgba(12,33,54,.45));border:1px solid rgba(255,255,255,.28);color:#fff;box-shadow:0 8px 16px rgba(0,0,0,.25)}
+.icon-strip a svg{width:28px;height:28px}
+.icon-strip a svg path{fill:currentColor}
+.contact-card{max-width:1100px;margin:0 auto}
+.contact-card.glass-card{padding:1.6rem 2rem}
+.contact-items{list-style:none;padding:0;margin:0;display:grid;gap:.8rem}
+.contact-items li{font-size:1.06rem}
+.contact-items span{display:inline-block;min-width:120px;font-weight:700;color:#fff}
+.contact-items a{color:#fff;text-decoration:none}
+.contact-items a:hover{color:#cfe6ff}
+.contact-items .sep{height:1px;background:rgba(255,255,255,.18);margin:.4rem 0}
+@media (max-width:680px){
+  .icon-strip{gap:.6rem}
+  .icon-strip a{width:56px;height:56px}
+  .icon-strip a svg{width:26px;height:26px}
+  .contact-card{max-width:96%}
+  .contact-items span{min-width:96px}
+  .map-wrapper{height:260px}
+}

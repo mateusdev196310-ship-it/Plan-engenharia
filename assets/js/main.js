@@ -602,3 +602,33 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', updateButtons);
   updateButtons();
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('jobsForm');
+  if (!form) return;
+  const to = 'plan@planengenharialtda.com.br';
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const nome = (fd.get('nome') || '').toString().trim();
+    const email = (fd.get('email') || '').toString().trim();
+    const telefone = (fd.get('telefone') || '').toString().trim();
+    const cidade = (fd.get('cidade') || '').toString().trim();
+    const area = (fd.get('area') || '').toString().trim();
+    const cargo = (fd.get('cargo') || '').toString().trim();
+    const mensagem = (fd.get('mensagem') || '').toString().trim();
+    if (!nome || !email || !area) return;
+    const subject = 'Candidatura - ' + area + ' - ' + nome;
+    const su = encodeURIComponent(subject);
+    const bodyText = 'Nome: ' + nome + '\nEmail: ' + email + '\nTelefone: ' + telefone + '\nCidade/Estado: ' + cidade + '\nÁrea: ' + area + '\nCargo: ' + cargo + '\n\n' + mensagem;
+    const body = encodeURIComponent(bodyText);
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + su + '&body=' + body;
+    const mailtoUrl = 'mailto:' + to + '?subject=' + su + '&body=' + body;
+    const w = window.open(gmailUrl, '_blank');
+    setTimeout(() => {
+      if (!w || w.closed) {
+        window.location.href = mailtoUrl;
+      }
+    }, 300);
+  });
+});

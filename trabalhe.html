@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plan Engenharia | Trabalhe Conosco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body class="theme-dark home-no-header">
+    <header class="site-header wedge">
+      <div class="topbar">
+        <div class="container topbar-inner"><a class="brand" href="index.html">PLAN Engenharia</a>
+          <div class="contact-top">📞 (73) 3525-1665</div>
+        </div>
+      </div>
+      <div class="container header-inner">
+        <nav class="nav" aria-label="Navegação principal"><button class="nav-toggle" aria-label="Abrir menu">☰</button>
+          <ul class="nav-list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="atuacao.html">Atuação</a></li>
+            <li><a href="obras.html">Obras</a></li>
+            <li><a class="active" href="trabalhe.html">Trabalhe Conosco</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section class="sian-hero trabalhe-hero" aria-label="Herói Trabalhe Conosco">
+      <div class="hero-backdrop"></div>
+      <nav class="hero-topnav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Quem Somos</a>
+        <a href="atuacao.html">Atuação</a>
+        <a href="obras.html">Obras</a>
+        <a href="trabalhe.html" class="active">Trabalhe Conosco</a>
+        <a href="contato.html">Contatos</a>
+      </nav>
+      <div class="hero-overlay-text">Trabalhe Conosco</div>
+      <svg class="hero-arc" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="arcGrad" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="#123053" />
+            <stop offset="100%" stop-color="#0c2136" />
+          </linearGradient>
+        </defs>
+        <path d="M0,12 Q50,-20 100,12 L100,0 L0,0 Z" fill="url(#arcGrad)" opacity=".55" />
+      </svg>
+    </section>
+
+    <section class="section dark-bg">
+      <div class="container">
+        <div class="grid-2">
+          <article class="lead-text">
+            <h2 class="section-title">Venha trabalhar conosco</h2>
+            <p class="section-lead">Buscamos profissionais comprometidos com ética, qualidade e foco em resultados. Envie seu currículo e faça parte da PLAN Engenharia.</p>
+            <ul class="feature-list iconized">
+              <li>Ambiente colaborativo e seguro</li>
+              <li>Projetos de alto impacto</li>
+              <li>Oportunidades de crescimento</li>
+              <li>Responsabilidade socioambiental</li>
+              <li>Excelência técnica e inovação</li>
+            </ul>
+          </article>
+          <form id="jobsForm" class="contact-form" action="mailto:plan@planengenharialtda.com.br" method="post" enctype="text/plain" novalidate>
+            <h2 class="section-title">Preencha seus dados</h2>
+            <div class="form-row">
+              <input type="text" name="nome" placeholder="Nome completo" required />
+              <input type="email" name="email" placeholder="E-mail" required />
+            </div>
+            <div class="form-row">
+              <input type="tel" name="telefone" placeholder="Telefone (opcional)" />
+              <input type="text" name="cidade" placeholder="Cidade/Estado (opcional)" />
+            </div>
+            <div class="form-row">
+              <select name="area" required>
+                <option value="" disabled selected>Área de interesse</option>
+                <option>Construção Civil</option>
+                <option>Infraestrutura</option>
+                <option>Terraplanagem</option>
+                <option>Estruturas Metálicas</option>
+                <option>Locação de Equipamentos</option>
+                <option>Administrativo</option>
+              </select>
+              <input type="text" name="cargo" placeholder="Cargo pretendido (opcional)" />
+            </div>
+            <textarea name="mensagem" rows="5" placeholder="Mensagem (links para portfólio, observações)"></textarea>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Enviar por e-mail</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year"></span> Plan Engenharia Ltda</p></div></footer>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
