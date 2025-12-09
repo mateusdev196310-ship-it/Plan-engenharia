@@ -370,7 +370,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
   .form-row{grid-template-columns:1fr}
   .feature-list.iconized{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-
+}
 
 /* Page hero */
 .page-hero {
