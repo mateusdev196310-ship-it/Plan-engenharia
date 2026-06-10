@@ -6,14 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.nav-list');
   const heroTopnav = document.querySelector('.hero-topnav');
   if (toggle) {
-    // Desktop header menu
     if (nav) {
       toggle.addEventListener('click', () => nav.classList.toggle('open'));
       nav.addEventListener('click', (e) => {
         if (e.target.tagName === 'A') nav.classList.remove('open');
       });
     } else if (heroTopnav) {
-      // Mobile-only hero nav: toggles a global menu-open state
       const body = document.body;
       toggle.addEventListener('click', () => {
         const open = body.classList.toggle('menu-open');
@@ -29,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
       const id = link.getAttribute('href');
@@ -41,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Simple hero slider
   const slides = Array.from(document.querySelectorAll('.hero-slide'));
   const prev = document.querySelector('.hero-controls .prev') || document.querySelector('.hero-panel .panel-controls .prev');
   const next = document.querySelector('.hero-controls .next') || document.querySelector('.hero-panel .panel-controls .next');
@@ -56,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bgVar) {
         s.style.backgroundImage = `linear-gradient(rgba(5,12,20,.55),rgba(5,12,20,.55)), ${bgVar}`;
       }
-      // Se não houver --bg, mantém o background-image definido inline no HTML
     });
   }
   if (slides.length){
@@ -67,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     next?.addEventListener('click',()=>{idx=(idx+1)%slides.length;show(idx)});
     setInterval(()=>{idx=(idx+1)%slides.length;show(idx)},5000);
   }
-  // Guard: impedir qualquer ocorrência da imagem indesejada (duas mulheres)
   const banned = 'pexels.com/photos/2528118';
   const replacement = 'https://images.pexels.com/photos/256983/pexels-photo-256983.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080';
   Array.from(document.images).forEach(img=>{ if (img.src.includes(banned)) img.src = replacement; });
@@ -75,10 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bg = el.style.backgroundImage;
     if (bg && bg.includes(banned)) el.style.backgroundImage = bg.replace('2528118','256983');
   });
-});
-// UI enhancements: progress bar, tilt effects, parallax, nav active
-document.addEventListener('DOMContentLoaded', () => {
-  // Scroll progress bar
+
   const bar = document.createElement('div');
   bar.className = 'scroll-progress';
   document.body.appendChild(bar);
@@ -91,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', updateBar);
   updateBar();
 
-  // Nav active based on pathname
   const path = location.pathname.replace(/\\/g,'/');
   const navLinks = Array.from(document.querySelectorAll('.nav-list a, .hero-topnav a'));
   navLinks.forEach(a => {
@@ -100,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (match) a.classList.add('active');
   });
 
-  // Tilt effect on cards (subtle)
   const tiltEls = Array.from(document.querySelectorAll('.work-card, .card'));
   tiltEls.forEach(el => {
     let raf = null;
@@ -110,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const cy = rect.top + rect.height/2;
       const dx = (e.clientX - cx) / rect.width;
       const dy = (e.clientY - cy) / rect.height;
-      const max = 4; // degrees
+      const max = 4;
       const rx = (-dy * max);
       const ry = (dx * max);
       if (!raf) {
@@ -125,11 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('mouseleave', onLeave);
   });
 
-  // Hero parallax (translate content slightly on scroll)
   const heroContent = document.querySelector('.hero-slide .hero-content') || document.querySelector('.page-hero .container');
   const onScroll = () => {
     if (!heroContent) return;
-    // Desativa parallax para páginas internas (page-hero) em telas até 960px
     const inPageHero = !!heroContent.closest('.page-hero');
     if (inPageHero && window.matchMedia('(max-width: 960px)').matches) return;
     const offset = Math.min(24, window.scrollY * 0.06);
@@ -138,15 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  // Parallax leve no herói (marca técnica e ornamento)
   const hero = document.querySelector('.hero');
   const mark = document.querySelector('.brand-mark');
   const ornament = document.querySelector('.hero-ornament');
   let rafMouse = null;
-  const onMove = (e) => {
+  const onMouseMove = (e) => {
     if (!hero) return;
     const rect = hero.getBoundingClientRect();
-    const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1..1
+    const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
     const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
     if (!rafMouse) {
       rafMouse = requestAnimationFrame(() => {
@@ -161,178 +147,161 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   if (hero) {
-    hero.addEventListener('mousemove', onMove);
+    hero.addEventListener('mousemove', onMouseMove);
     hero.addEventListener('mouseleave', () => {
       if (mark) mark.style.transform = 'translate3d(0,0,0)';
       if (ornament) ornament.style.transform = 'translate3d(0,0,0)';
     });
   }
 
-  // Removido: tilt das engrenagens (reversão solicitada)
-});
-
-// Abrir modal
-document.querySelectorAll('[data-modal-target]').forEach(button => {
-  button.addEventListener('click', () => {
-    const modalId = button.dataset.modalTarget;
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden'; // evita scroll de fundo
-    }
-  });
-});
-
-// Fechar modal Atuação
-document.querySelectorAll('[data-close-modal]').forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = button.closest('.modal');
-    if (modal) {
-      modal.classList.remove('active');
-      document.body.style.overflow = ''; // restaura scroll
-    }
-  });
-});
-
-// Fechar com ESC Modal da Page Atuação
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    const modal = document.querySelector('.modal.active');
-    if (modal) {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-});
-
-// Carrossel com arrasto (mouse e touch) da Page Atuação
-document.querySelectorAll('[data-carousel-track]').forEach(track => {
-  const slides = Array.from(track.children);
-  const nav = track.closest('.carousel-wrapper').querySelector('[data-carousel-nav]');
-  let currentIndex = 0;
-  let startX = 0;
-  let currentX = 0;
-  let translateX = 0;
-  let isDragging = false;
-  let isDown = false; // estado do mouse
-
-  // Criar bolinhas
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
-    dot.addEventListener('click', () => goToSlide(i));
-    nav.appendChild(dot);
-  });
-
-  const dots = nav.querySelectorAll('button');
-  updateCarousel();
-
-  // === Funções principais ===
-  function goToSlide(index) {
-    currentIndex = index;
-    updateCarousel();
-  }
-
-  function updateCarousel() {
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
+  document.querySelectorAll('[data-modal-target]').forEach(button => {
+    button.addEventListener('click', () => {
+      const modalId = button.dataset.modalTarget;
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
     });
-  }
-
-  // === Arrasto com mouse ===
-  track.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - track.offsetLeft;
-    translateX = -currentIndex * track.offsetWidth;
-    track.classList.add('dragging');
-    e.preventDefault(); // evita seleção de texto
   });
 
-  window.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    isDragging = true;
-    currentX = e.pageX - track.offsetLeft;
-    const diff = currentX - startX;
-    track.style.transform = `translateX(${translateX + diff}px`;
+  document.querySelectorAll('[data-close-modal]').forEach(button => {
+    button.addEventListener('click', () => {
+      const modal = button.closest('.modal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
   });
 
-  window.addEventListener('mouseup', () => {
-    if (!isDown) return;
-    track.classList.remove('dragging');
-    isDown = false;
-
-    if (isDragging) {
-      const diff = currentX - startX;
-      const threshold = track.offsetWidth * 0.2; // 20% do slide
-
-      if (diff > threshold && currentIndex > 0) {
-        goToSlide(currentIndex - 1);
-      } else if (diff < -threshold && currentIndex < slides.length - 1) {
-        goToSlide(currentIndex + 1);
-      } else {
-        // Volta suavemente para o slide atual
-        updateCarousel();
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const modal = document.querySelector('.modal.active');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
       }
     }
-    isDragging = false;
   });
 
-  // === Arrasto com toque (mobile) ===
-  track.addEventListener('touchstart', (e) => {
-    isDown = true;
-    startX = e.touches[0].clientX - track.offsetLeft;
-    translateX = -currentIndex * track.offsetWidth;
-    track.classList.add('dragging');
-    e.preventDefault();
-  });
+  document.querySelectorAll('[data-carousel-track]').forEach(track => {
+    const slides = Array.from(track.children);
+    const nav = track.closest('.carousel-wrapper').querySelector('[data-carousel-nav]');
+    let currentIndex = 0;
+    let startX = 0;
+    let currentX = 0;
+    let translateX = 0;
+    let isDragging = false;
+    let isDown = false;
 
-  window.addEventListener('touchmove', (e) => {
-    if (!isDown) return;
-    isDragging = true;
-    currentX = e.touches[0].clientX - track.offsetLeft;
-    const diff = currentX - startX;
-    track.style.transform = `translateX(${translateX + diff}px`;
-  });
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      nav.appendChild(dot);
+    });
 
-  window.addEventListener('touchend', () => {
-    if (!isDown) return;
-    track.classList.remove('dragging');
-    isDown = false;
+    const dots = nav.querySelectorAll('button');
+    updateCarousel();
 
-    if (isDragging) {
+    function goToSlide(index) {
+      currentIndex = index;
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - track.offsetLeft;
+      translateX = -currentIndex * track.offsetWidth;
+      track.classList.add('dragging');
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      isDragging = true;
+      currentX = e.pageX - track.offsetLeft;
       const diff = currentX - startX;
-      const threshold = track.offsetWidth * 0.2;
+      track.style.transform = `translateX(${translateX + diff}px`;
+    });
 
-      if (diff > threshold && currentIndex > 0) {
-        goToSlide(currentIndex - 1);
-      } else if (diff < -threshold && currentIndex < slides.length - 1) {
-        goToSlide(currentIndex + 1);
-      } else {
-        updateCarousel();
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      track.classList.remove('dragging');
+      isDown = false;
+
+      if (isDragging) {
+        const diff = currentX - startX;
+        const threshold = track.offsetWidth * 0.2;
+
+        if (diff > threshold && currentIndex > 0) {
+          goToSlide(currentIndex - 1);
+        } else if (diff < -threshold && currentIndex < slides.length - 1) {
+          goToSlide(currentIndex + 1);
+        } else {
+          updateCarousel();
+        }
       }
-    }
-    isDragging = false;
+      isDragging = false;
+    });
+
+    track.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].clientX - track.offsetLeft;
+      translateX = -currentIndex * track.offsetWidth;
+      track.classList.add('dragging');
+      e.preventDefault();
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      isDragging = true;
+      currentX = e.touches[0].clientX - track.offsetLeft;
+      const diff = currentX - startX;
+      track.style.transform = `translateX(${translateX + diff}px`;
+    });
+
+    window.addEventListener('touchend', () => {
+      if (!isDown) return;
+      track.classList.remove('dragging');
+      isDown = false;
+
+      if (isDragging) {
+        const diff = currentX - startX;
+        const threshold = track.offsetWidth * 0.2;
+
+        if (diff > threshold && currentIndex > 0) {
+          goToSlide(currentIndex - 1);
+        } else if (diff < -threshold && currentIndex < slides.length - 1) {
+          goToSlide(currentIndex + 1);
+        } else {
+          updateCarousel();
+        }
+      }
+      isDragging = false;
+    });
+
+    track.closest('.modal-content').addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (currentIndex > 0) goToSlide(currentIndex - 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+      }
+    });
+
+    track.style.userSelect = 'none';
   });
 
-  // === Navegação com teclado (acessibilidade) ===
-  track.closest('.modal-content').addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      if (currentIndex > 0) goToSlide(currentIndex - 1);
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
-    }
-  });
-
-  // === Impedir seleção acidental durante arrasto ===
-  track.style.userSelect = 'none';
-});
-
-// Obras: carrossel estilo SIAN (slides com dots)
-document.addEventListener('DOMContentLoaded', () => {
-  // Sincroniza a largura exata do banner com a variável CSS --banner-w
   const setBannerVar = () => {
     const activeBanner = document.querySelector('.work-slide.active .banner-frame') || document.querySelector('.banner-frame');
     const container = document.querySelector('.works-carousel .container') || document.querySelector('.works-carousel');
@@ -349,105 +318,99 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('load', setBannerVar);
   window.addEventListener('resize', setBannerVar);
 
-  const carousel = document.querySelector('.works-carousel');
-  if (!carousel) return;
-  const slides = Array.from(carousel.querySelectorAll('.work-slide'));
-  const dots = Array.from(carousel.querySelectorAll('.dot'));
-  let current = 0;
-  const show = (i) => {
-    current = Math.max(0, Math.min(i, slides.length - 1));
-    slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
-    dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
-    setBannerVar(); // atualizar var quando muda slide
-  };
-  dots.forEach((d) => {
-    d.addEventListener('click', () => {
-      const t = parseInt(d.getAttribute('data-target') || '0', 10);
-      show(t);
-    });
-  });
-  show(0);
-
-  // Thumbnails horizontal scroller per slide (prev/next buttons)
-  slides.forEach(slide => {
-    const row = slide.querySelector('.thumbs-row');
-    if (!row) return;
-    const scroller = row.querySelector('.work-thumbs.scroller');
-    const prev = row.querySelector('.thumbs-prev');
-    const next = row.querySelector('.thumbs-next');
-    if (scroller && prev && next) {
-      const first = scroller.querySelector('img');
-      const styles = getComputedStyle(scroller);
-      const gap = parseFloat(styles.gap || styles.columnGap || '0');
-      const base = first ? first.getBoundingClientRect().width : 240;
-      const step = Math.max(120, Math.round(base + gap));
-      prev.addEventListener('click', () => scroller.scrollBy({ left: -step, behavior: 'smooth' }));
-      next.addEventListener('click', () => scroller.scrollBy({ left: step, behavior: 'smooth' }));
-    }
-    // Arraste com mouse/touch para deslizar thumbnails
-    if (scroller) {
-      let isDown = false, startX = 0, startScroll = 0;
-      const onDown = (clientX) => { isDown = true; startX = clientX; startScroll = scroller.scrollLeft; scroller.classList.add('dragging'); };
-      const onMove = (clientX) => { if (!isDown) return; const dx = clientX - startX; scroller.scrollLeft = startScroll - dx; };
-      const onUp = () => { isDown = false; scroller.classList.remove('dragging'); };
-      // Mouse
-      scroller.addEventListener('mousedown', (e) => { e.preventDefault(); onDown(e.clientX); });
-      window.addEventListener('mousemove', (e) => onMove(e.clientX));
-      window.addEventListener('mouseup', onUp);
-      // Touch
-      scroller.addEventListener('touchstart', (e) => { if (e.touches && e.touches[0]) onDown(e.touches[0].clientX); }, {passive:true});
-      scroller.addEventListener('touchmove', (e) => { if (e.touches && e.touches[0]) onMove(e.touches[0].clientX); }, {passive:true});
-      scroller.addEventListener('touchend', onUp);
-      scroller.addEventListener('mouseleave', onUp);
-    }
-  });
-
-  // Modal: abrir descrição da obra ao clicar em "Veja Mais"
-  const openModal = (title, desc) => {
-    const backdrop = document.createElement('div');
-    backdrop.className = 'modal-backdrop show';
-    backdrop.setAttribute('aria-hidden','false');
-    const panel = document.createElement('div');
-    panel.className = 'modal-panel';
-    const h = document.createElement('h3');
-    h.textContent = title || 'Detalhes da obra';
-    const p = document.createElement('p');
-    p.textContent = desc || 'Descrição indisponível.';
-    const close = document.createElement('button');
-    close.className = 'modal-close';
-    close.type = 'button';
-    close.textContent = 'Fechar';
-    panel.appendChild(close);
-    panel.appendChild(h);
-    panel.appendChild(p);
-    document.body.appendChild(backdrop);
-    document.body.appendChild(panel);
-    const cleanup = () => {
-      panel.remove();
-      backdrop.remove();
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', onKey);
+  const worksCarousel = document.querySelector('.works-carousel');
+  if (worksCarousel) {
+    const wSlides = Array.from(worksCarousel.querySelectorAll('.work-slide'));
+    const dots = Array.from(worksCarousel.querySelectorAll('.dot'));
+    let current = 0;
+    const showWork = (i) => {
+      current = Math.max(0, Math.min(i, wSlides.length - 1));
+      wSlides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+      dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+      setBannerVar();
     };
-    const onKey = (e) => { if (e.key === 'Escape') cleanup(); };
-    backdrop.addEventListener('click', cleanup);
-    close.addEventListener('click', cleanup);
-    window.addEventListener('keydown', onKey);
-    document.body.style.overflow = 'hidden';
-    close.focus();
-  };
-  slides.forEach(slide => {
-    const btn = slide.querySelector('.banner-info .btn');
-    if (!btn) return;
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const title = slide.querySelector('.banner-info h3')?.textContent.trim();
-      const desc = slide.querySelector('.banner-info p')?.textContent.trim();
-      openModal(title, desc);
+    dots.forEach((d) => {
+      d.addEventListener('click', () => {
+        const t = parseInt(d.getAttribute('data-target') || '0', 10);
+        showWork(t);
+      });
     });
-  });
-});
-// Animations: reveal on scroll
-document.addEventListener('DOMContentLoaded', () => {
+    showWork(0);
+
+    wSlides.forEach(slide => {
+      const row = slide.querySelector('.thumbs-row');
+      if (!row) return;
+      const scroller = row.querySelector('.work-thumbs.scroller');
+      const prev = row.querySelector('.thumbs-prev');
+      const next = row.querySelector('.thumbs-next');
+      if (scroller && prev && next) {
+        const first = scroller.querySelector('img');
+        const styles = getComputedStyle(scroller);
+        const gap = parseFloat(styles.gap || styles.columnGap || '0');
+        const base = first ? first.getBoundingClientRect().width : 240;
+        const step = Math.max(120, Math.round(base + gap));
+        prev.addEventListener('click', () => scroller.scrollBy({ left: -step, behavior: 'smooth' }));
+        next.addEventListener('click', () => scroller.scrollBy({ left: step, behavior: 'smooth' }));
+      }
+      if (scroller) {
+        let isDown = false, startX = 0, startScroll = 0;
+        const onDown = (clientX) => { isDown = true; startX = clientX; startScroll = scroller.scrollLeft; scroller.classList.add('dragging'); };
+        const onMove = (clientX) => { if (!isDown) return; const dx = clientX - startX; scroller.scrollLeft = startScroll - dx; };
+        const onUp = () => { isDown = false; scroller.classList.remove('dragging'); };
+        scroller.addEventListener('mousedown', (e) => { e.preventDefault(); onDown(e.clientX); });
+        window.addEventListener('mousemove', (e) => onMove(e.clientX));
+        window.addEventListener('mouseup', onUp);
+        scroller.addEventListener('touchstart', (e) => { if (e.touches && e.touches[0]) onDown(e.touches[0].clientX); }, {passive:true});
+        scroller.addEventListener('touchmove', (e) => { if (e.touches && e.touches[0]) onMove(e.touches[0].clientX); }, {passive:true});
+        scroller.addEventListener('touchend', onUp);
+        scroller.addEventListener('mouseleave', onUp);
+      }
+    });
+
+    const openModal = (title, desc) => {
+      const backdrop = document.createElement('div');
+      backdrop.className = 'modal-backdrop show';
+      backdrop.setAttribute('aria-hidden','false');
+      const panel = document.createElement('div');
+      panel.className = 'modal-panel';
+      const h = document.createElement('h3');
+      h.textContent = title || 'Detalhes da obra';
+      const p = document.createElement('p');
+      p.textContent = desc || 'Descrição indisponível.';
+      const close = document.createElement('button');
+      close.className = 'modal-close';
+      close.type = 'button';
+      close.textContent = 'Fechar';
+      panel.appendChild(close);
+      panel.appendChild(h);
+      panel.appendChild(p);
+      document.body.appendChild(backdrop);
+      document.body.appendChild(panel);
+      const cleanup = () => {
+        panel.remove();
+        backdrop.remove();
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', onKey);
+      };
+      const onKey = (e) => { if (e.key === 'Escape') cleanup(); };
+      backdrop.addEventListener('click', cleanup);
+      close.addEventListener('click', cleanup);
+      window.addEventListener('keydown', onKey);
+      document.body.style.overflow = 'hidden';
+      close.focus();
+    };
+    wSlides.forEach(slide => {
+      const btn = slide.querySelector('.banner-info .btn');
+      if (!btn) return;
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const title = slide.querySelector('.banner-info h3')?.textContent.trim();
+        const desc = slide.querySelector('.banner-info p')?.textContent.trim();
+        openModal(title, desc);
+      });
+    });
+  }
+
   const candidates = Array.from(document.querySelectorAll(
     '.section, .section h2, .section-lead, .card, .mvv-card, .teaser, .news-item, .work-card, .media img, .gallery img, .btn'
   ));
@@ -461,7 +424,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   },{root:null, threshold:0.15});
   candidates.forEach(el=>io.observe(el));
-  // Fallback: garantir que a primeira seção visível (acima da borda) não fique transparente
   const seedVisible = () => {
     const vh = window.innerHeight || document.documentElement.clientHeight;
     candidates.forEach(el => {
@@ -479,13 +441,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   seedVisible();
   window.addEventListener('load', seedVisible, { once: true });
-});
-  // Atividades: Galeria simples
-  // Atividades: Carrossel horizontal com item central maior
+
   const actItems = Array.from(document.querySelectorAll('.act-carousel .act-item'));
   const actPrev = document.querySelector('.act-carousel .act-controls .prev');
   const actNext = document.querySelector('.act-carousel .act-controls .next');
-  let actIdx = 2; // começar no meio
+  let actIdx = 2;
   function applyActClasses(){
     actItems.forEach((el, i) => {
       el.classList.remove('large','small');
@@ -496,7 +456,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  // Versão 3 painéis (layout do print): mostra esquerda, centro, direita
   function renderThree(){
     const n = actItems.length;
     const left = (actIdx-1+n)%n;
@@ -510,12 +469,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   if (document.querySelector('.act-carousel.act-3')){
-    // Carrossel por páginas: mostra 3 itens por vez
     const n = actItems.length;
     let start = 0;
     function itemsPerView(){
       const w = window.innerWidth;
-      // Mobile: 2 itens por visão; Tablet: 2; Desktop: 3
       return w<=680 ? 2 : (w<=960 ? 2 : 3);
     }
     function renderPage(){
@@ -539,14 +496,12 @@ document.addEventListener('DOMContentLoaded', () => {
       start = (start + (e.clientX<mid?-1:1) + n) % n;
       renderPage();
     });
-    // ensure visible items are revealed
     setTimeout(()=>{
       document.querySelectorAll('.act-carousel.act-3 .act-item.visible').forEach(el=>{
         el.classList.add('reveal'); el.classList.add('in');
       });
     }, 50);
   } else if (actItems.length){
-    // fallback para carrossel com item central maior
     applyActClasses();
     actPrev?.addEventListener('click',()=>{ actIdx = (actIdx-1+actItems.length)%actItems.length; applyActClasses(); });
     actNext?.addEventListener('click',()=>{ actIdx = (actIdx+1)%actItems.length; applyActClasses(); });
@@ -559,76 +514,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     setInterval(()=>{ actIdx = (actIdx+1)%actItems.length; applyActClasses(); }, 6000);
   }
-  // Timeline horizontal: navegação e arraste
-(function(){
-  const track = document.querySelector('.timeline-track .timeline.horiz');
-  const prev = document.querySelector('.timeline-prev');
-  const next = document.querySelector('.timeline-next');
-  if (!track) return;
 
-  const updateButtons = () => {
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    prev.disabled = track.scrollLeft <= 0;
-    next.disabled = track.scrollLeft >= (maxScroll - 2);
-  };
+  (function(){
+    const track = document.querySelector('.timeline-track .timeline.horiz');
+    const prev = document.querySelector('.timeline-prev');
+    const next = document.querySelector('.timeline-next');
+    if (!track) return;
 
-  const scrollAmount = () => Math.min(340, track.clientWidth * 0.8);
+    const updateButtons = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prev.disabled = track.scrollLeft <= 0;
+      next.disabled = track.scrollLeft >= (maxScroll - 2);
+    };
 
-  prev && prev.addEventListener('click', () => {
-    track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-  });
-  next && next.addEventListener('click', () => {
-    track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-  });
+    const scrollAmount = () => Math.min(340, track.clientWidth * 0.8);
 
-  let isDown = false, startX = 0, scrollLeft = 0;
-  track.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - track.offsetLeft;
-    scrollLeft = track.scrollLeft;
-    track.classList.add('dragging');
-  });
-  track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('dragging'); });
-  track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
-  track.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - track.offsetLeft;
-    const walk = (x - startX);
-    track.scrollLeft = scrollLeft - walk;
-  });
+    prev && prev.addEventListener('click', () => {
+      track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+    next && next.addEventListener('click', () => {
+      track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    });
 
-  track.addEventListener('scroll', updateButtons);
-  window.addEventListener('resize', updateButtons);
-  updateButtons();
-})();
+    let isDown = false, startX = 0, scrollLeft = 0;
+    track.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+      track.classList.add('dragging');
+    });
+    track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('dragging'); });
+    track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+    track.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX);
+      track.scrollLeft = scrollLeft - walk;
+    });
 
-document.addEventListener('DOMContentLoaded', () => {
+    track.addEventListener('scroll', updateButtons);
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
+  })();
+
   const form = document.getElementById('jobsForm');
-  if (!form) return;
-  const to = 'plan@planengenharialtda.com.br';
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    const fd = new FormData(form);
-    const nome = (fd.get('nome') || '').toString().trim();
-    const email = (fd.get('email') || '').toString().trim();
-    const telefone = (fd.get('telefone') || '').toString().trim();
-    const cidade = (fd.get('cidade') || '').toString().trim();
-    const area = (fd.get('area') || '').toString().trim();
-    const cargo = (fd.get('cargo') || '').toString().trim();
-    const mensagem = (fd.get('mensagem') || '').toString().trim();
-    const subject = 'Candidatura - ' + area + ' - ' + nome;
-    const su = encodeURIComponent(subject);
-    const bodyText = 'Nome: ' + nome + '\nEmail: ' + email + '\nTelefone: ' + telefone + '\nCidade/Estado: ' + cidade + '\nÁrea: ' + area + '\nCargo: ' + cargo + '\n\n' + mensagem + '\n\nObservação: após abrir o e-mail, anexe seu currículo em PDF. A anexação é realizada no e-mail, não nesta página.';
-    const body = encodeURIComponent(bodyText);
-    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + su + '&body=' + body;
-    const mailtoUrl = 'mailto:' + to + '?subject=' + su + '&body=' + body;
-    const w = window.open(gmailUrl, '_blank');
-    setTimeout(() => {
-      if (!w || w.closed) {
-        window.location.href = mailtoUrl;
-      }
-    }, 300);
-  });
+  if (form) {
+    const to = 'plan@planengenharialtda.com.br';
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const fd = new FormData(form);
+      const nome = (fd.get('nome') || '').toString().trim();
+      const email = (fd.get('email') || '').toString().trim();
+      const telefone = (fd.get('telefone') || '').toString().trim();
+      const cidade = (fd.get('cidade') || '').toString().trim();
+      const area = (fd.get('area') || '').toString().trim();
+      const cargo = (fd.get('cargo') || '').toString().trim();
+      const mensagem = (fd.get('mensagem') || '').toString().trim();
+      const subject = 'Candidatura - ' + area + ' - ' + nome;
+      const su = encodeURIComponent(subject);
+      const bodyText = 'Nome: ' + nome + '\nEmail: ' + email + '\nTelefone: ' + telefone + '\nCidade/Estado: ' + cidade + '\nÁrea: ' + area + '\nCargo: ' + cargo + '\n\n' + mensagem + '\n\nObservação: após abrir o e-mail, anexe seu currículo em PDF. A anexação é realizada no e-mail, não nesta página.';
+      const body = encodeURIComponent(bodyText);
+      const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + su + '&body=' + body;
+      const mailtoUrl = 'mailto:' + to + '?subject=' + su + '&body=' + body;
+      const w = window.open(gmailUrl, '_blank');
+      setTimeout(() => {
+        if (!w || w.closed) {
+          window.location.href = mailtoUrl;
+        }
+      }, 300);
+    });
+  }
+});
+
+document.querySelectorAll('.container img, .banner-img, .gallery img, .media img, .work-card img, .news-item img').forEach(img => {
+  if (!img.hasAttribute('loading')) {
+    img.setAttribute('loading', 'lazy');
+  }
 });

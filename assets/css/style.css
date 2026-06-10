@@ -53,7 +53,6 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
   background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.08) 50%, transparent 60%);
   mix-blend-mode: screen; opacity:.0; animation: sheenSweep 9s ease-in-out 1.2s infinite;
 }
-.brand-mark{position:absolute;left:-40px;bottom:20px;width:520px;height:520px;z-index:3;pointer-events:none;opacity:.45}
 .hero-ornament{position:absolute;right:clamp(1rem,6vw,3rem);bottom:clamp(1rem,6vw,2rem);width:420px;height:420px;z-index:3;pointer-events:none;opacity:.50;filter:drop-shadow(0 6px 18px rgba(0,0,0,.22))}
 .hero-ornament .layer{transform-origin:50% 50%;}
 /* Desativar animações da engrenagem para evitar qualquer interferência visual */
@@ -86,7 +85,6 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .section.blue-bg{background:linear-gradient(180deg,#123053,#0c2136)}
 .section.slate-bg{background:#0e2035}
 .section + .section{border-top:1px solid var(--border)}
-.section + .section{border-top:1px solid var(--border)}
 
 .section h2 {
   font-family: Montserrat, Arial, sans-serif;
@@ -96,10 +94,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .section-title {
   font-size: 1.6rem;
   text-transform: uppercase;
-  letter-spacing: .08em
-}
-
-.section-title {
+  letter-spacing: .08em;
   position: relative;
   padding-left: 1rem
 }
@@ -362,6 +357,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 @media (max-width:560px){
   .modal-panel{width:96vw;max-height:88vh;padding:1rem}
 }
+@media (max-width:640px){
   .nav-list{position:fixed;inset:60px 0 auto 0;background:#fff;border-bottom:1px solid var(--border);padding:1rem;display:none;flex-direction:column}
   .nav-list.open{display:flex}
   .grid-3{grid-template-columns:1fr}
