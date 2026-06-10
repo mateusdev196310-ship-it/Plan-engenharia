@@ -588,8 +588,3 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-document.querySelectorAll('.container img, .banner-img, .gallery img, .media img, .work-card img, .news-item img').forEach(img => {
-  if (!img.hasAttribute('loading')) {
-    img.setAttribute('loading', 'lazy');
-  }
-});
