@@ -39,7 +39,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .nav-list a{color:#c6d2df;text-decoration:none;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
 .nav-list a:hover{color:var(--primary)}
 .nav-list a.active{color:#fff}
-.nav-toggle{display:none;border:0;background:none;font-size:1.4rem}
+.nav-toggle{display:none;border:0;background:none;font-size:1.4rem;cursor:pointer}
 
 /* Logo móvel (default: oculto) */
 .mobile-brand{display:none}
@@ -193,8 +193,9 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .contact-list a{color:var(--primary)}
 .contact-form{display:grid;gap:.8rem}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-.contact-form input,.contact-form textarea{width:100%;padding:.8rem;border:1px solid var(--border);border-radius:.5rem;font:inherit;background:#fff;color:#0c2136}
+.contact-form input,.contact-form textarea,.contact-form select{width:100%;padding:.8rem;border:1px solid var(--border);border-radius:.5rem;font:inherit;background:#fff;color:#0c2136}
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:#93a4b7}
+.contact-form select{appearance:auto}
 .contact-form button{justify-self:start}
 
 .map-wrapper{height:320px;border-radius:.75rem;overflow:hidden;border:1px solid var(--border)}
@@ -213,7 +214,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .footer-links{list-style:none;margin:0;padding:0;display:grid;gap:.3rem}
 
 /* WhatsApp float */
-.whatsapp-float{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;box-shadow:0 8px 24px rgba(0,0,0,.25);}
+.whatsapp-float{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;background:#25D366;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:90}
 .whatsapp-float::before{content:"";position:absolute;inset:0;background:url('https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg') center/60% no-repeat}
 .whatsapp-float:hover{transform:translateY(-2px)}
 
@@ -358,7 +359,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
   .modal-panel{width:96vw;max-height:88vh;padding:1rem}
 }
 @media (max-width:640px){
-  .nav-list{position:fixed;inset:60px 0 auto 0;background:#fff;border-bottom:1px solid var(--border);padding:1rem;display:none;flex-direction:column}
+  .nav-list{position:fixed;inset:60px 0 auto 0;background:#fff;border-bottom:1px solid var(--border);padding:1rem;display:none;flex-direction:column;box-shadow:0 16px 30px rgba(0,0,0,.22)}
   .nav-list.open{display:flex}
   .grid-3{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
@@ -1265,8 +1266,9 @@ body > *{ position:relative; z-index:1; }
 .news .news-item::before{content:"";position:absolute;left:-10px;top:.4rem;bottom:.4rem;width:4px;background:linear-gradient(180deg,#4fd1ff,#86c5e6);border-radius:999px}
 
 /* Contato: inputs pílula e glow suave */
-.contact-form input, .contact-form textarea{border:1px solid rgba(255,255,255,.24);border-radius:14px;background:rgba(12,33,54,.18);color:#eaf2fa;box-shadow:inset 0 1px 4px rgba(0,0,0,.18);padding:.65rem .8rem}
-.contact-form input:focus, .contact-form textarea:focus{outline:none;border-color:#86c5e6;box-shadow:0 0 0 3px rgba(69,189,255,.25)}
+.contact-form input, .contact-form textarea, .contact-form select{border:1px solid rgba(255,255,255,.24);border-radius:14px;background:rgba(12,33,54,.18);color:#eaf2fa;box-shadow:inset 0 1px 4px rgba(0,0,0,.18);padding:.65rem .8rem}
+.contact-form select option{color:#0c2136;background:#fff}
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus{outline:none;border-color:#86c5e6;box-shadow:0 0 0 3px rgba(69,189,255,.25)}
 .contact-form button.btn{border-radius:999px}
 
 @media (max-width:680px){

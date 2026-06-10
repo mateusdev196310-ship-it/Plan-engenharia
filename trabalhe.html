@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="container header-inner">
-        <nav class="nav" aria-label="Navegação principal"><button class="nav-toggle" aria-label="Abrir menu">☰</button>
+        <nav class="nav" aria-label="Navegação principal"><button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
           <ul class="nav-list">
             <li><a href="index.html">Início</a></li>
             <li><a href="sobre.html">Sobre</a></li>
@@ -73,11 +73,11 @@
             <h2 class="section-title">Preencha seus dados</h2>
             <div class="notice-card glass-card">Importante: após abrir o e‑mail, anexe seu currículo em PDF. A anexação do arquivo é realizada no e‑mail, não nesta página.</div>
             <div class="form-row">
-              <input type="text" name="nome" placeholder="Nome completo" required />
-              <input type="email" name="email" placeholder="E-mail" required />
+              <input type="text" name="nome" placeholder="Nome completo" autocomplete="name" required />
+              <input type="email" name="email" placeholder="E-mail" autocomplete="email" required />
             </div>
             <div class="form-row">
-              <input type="tel" name="telefone" placeholder="Telefone (opcional)" />
+              <input type="tel" name="telefone" placeholder="Telefone (opcional)" autocomplete="tel" />
               <input type="text" name="cidade" placeholder="Cidade/Estado (opcional)" />
             </div>
             <div class="form-row">

@@ -6,10 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.nav-list');
   const heroTopnav = document.querySelector('.hero-topnav');
   if (toggle) {
+    toggle.setAttribute('aria-expanded', 'false');
     if (nav) {
-      toggle.addEventListener('click', () => nav.classList.toggle('open'));
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
       nav.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') nav.classList.remove('open');
+        if (e.target.tagName === 'A') {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
       });
     } else if (heroTopnav) {
       const body = document.body;
@@ -60,7 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
     slides[idx].classList.add('active');
     prev?.addEventListener('click',()=>{idx=(idx-1+slides.length)%slides.length;show(idx)});
     next?.addEventListener('click',()=>{idx=(idx+1)%slides.length;show(idx)});
-    setInterval(()=>{idx=(idx+1)%slides.length;show(idx)},5000);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(()=>{idx=(idx+1)%slides.length;show(idx)},5000);
+    }
   }
   const banned = 'pexels.com/photos/2528118';
   const replacement = 'https://images.pexels.com/photos/256983/pexels-photo-256983.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080';
@@ -230,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isDragging = true;
       currentX = e.pageX - track.offsetLeft;
       const diff = currentX - startX;
-      track.style.transform = `translateX(${translateX + diff}px`;
+      track.style.transform = `translateX(${translateX + diff}px)`;
     });
 
     window.addEventListener('mouseup', () => {
@@ -266,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isDragging = true;
       currentX = e.touches[0].clientX - track.offsetLeft;
       const diff = currentX - startX;
-      track.style.transform = `translateX(${translateX + diff}px`;
+      track.style.transform = `translateX(${translateX + diff}px)`;
     });
 
     window.addEventListener('touchend', () => {
@@ -373,6 +382,8 @@ document.addEventListener('DOMContentLoaded', () => {
       backdrop.setAttribute('aria-hidden','false');
       const panel = document.createElement('div');
       panel.className = 'modal-panel';
+      panel.setAttribute('role', 'dialog');
+      panel.setAttribute('aria-modal', 'true');
       const h = document.createElement('h3');
       h.textContent = title || 'Detalhes da obra';
       const p = document.createElement('p');
@@ -415,15 +426,19 @@ document.addEventListener('DOMContentLoaded', () => {
     '.section, .section h2, .section-lead, .card, .mvv-card, .teaser, .news-item, .work-card, .media img, .gallery img, .btn'
   ));
   candidates.forEach(el => el.classList.add('reveal'));
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
-    });
-  },{root:null, threshold:0.15});
-  candidates.forEach(el=>io.observe(el));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    },{root:null, threshold:0.15});
+    candidates.forEach(el=>io.observe(el));
+  } else {
+    candidates.forEach(el => el.classList.add('in'));
+  }
   const seedVisible = () => {
     const vh = window.innerHeight || document.documentElement.clientHeight;
     candidates.forEach(el => {
@@ -512,7 +527,9 @@ document.addEventListener('DOMContentLoaded', () => {
       actIdx = (actIdx + (e.clientX<mid?-1:1) + actItems.length) % actItems.length;
       applyActClasses();
     });
-    setInterval(()=>{ actIdx = (actIdx+1)%actItems.length; applyActClasses(); }, 6000);
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(()=>{ actIdx = (actIdx+1)%actItems.length; applyActClasses(); }, 6000);
+    }
   }
 
   (function(){
@@ -587,4 +604,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
