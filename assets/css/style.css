@@ -238,7 +238,7 @@ body{margin:0;font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Robot
 .sian-hero:root{ --banner-w: min(92vw,1480px); }
 .sian-hero{position:relative;height:420px;background:linear-gradient(180deg,#0c2136,#0a1724)}
 .sian-hero .hero-backdrop{position:absolute;inset:0;background:url('assets/img/hero3.svg') center/cover no-repeat;opacity:.24;mix-blend-mode:normal}
-.sian-hero .hero-overlay-text{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-transform:uppercase;font-family:Montserrat,Arial,sans-serif;font-weight:800;letter-spacing:.06em;color:#cfe0f5;opacity:.16;font-size:clamp(2.4rem,9vw,7rem);white-space:nowrap}
+.sian-hero .hero-overlay-text{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-transform:uppercase;font-family:Montserrat,Arial,sans-serif;font-weight:800;letter-spacing:.06em;color:#cfe0f5;opacity:.28;font-size:clamp(2.4rem,9vw,7rem);white-space:nowrap}
 
 .works-carousel{position:relative; 
   background:
