@@ -49,27 +49,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const prev = document.querySelector('.hero-controls .prev') || document.querySelector('.hero-panel .panel-controls .prev');
   const next = document.querySelector('.hero-controls .next') || document.querySelector('.hero-panel .panel-controls .next');
   let idx = 0;
+  let intervalId = null;
+
   function show(i){
-    slides.forEach((s,si)=>{
-      s.style.opacity = si===i?1:0;
-      s.style.transform = si===i? 'translateX(0)' : 'translateX(10px)';
-      s.style.transition = 'opacity .6s ease, transform .6s ease';
-      s.classList.toggle('active', si===i);
-      const bgVar = getComputedStyle(s).getPropertyValue('--bg').trim();
-      if (bgVar) {
-        s.style.backgroundImage = `linear-gradient(rgba(5,12,20,.55),rgba(5,12,20,.55)), ${bgVar}`;
-      }
+    slides.forEach((s, si) => {
+      s.classList.toggle('active', si === i);
     });
   }
-  if (slides.length){
-    slides.forEach(s=>s.style.opacity=0);
-    slides[idx].style.opacity=1;
-    slides[idx].classList.add('active');
-    prev?.addEventListener('click',()=>{idx=(idx-1+slides.length)%slides.length;show(idx)});
-    next?.addEventListener('click',()=>{idx=(idx+1)%slides.length;show(idx)});
+
+  function startAutoplay() {
+    stopAutoplay();
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setInterval(()=>{idx=(idx+1)%slides.length;show(idx)},5000);
+      intervalId = setInterval(() => {
+        idx = (idx + 1) % slides.length;
+        show(idx);
+      }, 5000);
     }
+  }
+
+  function stopAutoplay() {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  }
+
+  if (slides.length){
+    // Keep first slide active initially
+    show(idx);
+    startAutoplay();
+
+    prev?.addEventListener('click', () => {
+      idx = (idx - 1 + slides.length) % slides.length;
+      show(idx);
+      startAutoplay(); // Reset timer to prevent double transitions
+    });
+
+    next?.addEventListener('click', () => {
+      idx = (idx + 1) % slides.length;
+      show(idx);
+      startAutoplay(); // Reset timer to prevent double transitions
+    });
   }
   const banned = 'pexels.com/photos/2528118';
   const replacement = 'https://images.pexels.com/photos/256983/pexels-photo-256983.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080';
