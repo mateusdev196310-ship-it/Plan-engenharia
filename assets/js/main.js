@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const close = document.createElement('button');
       close.className = 'modal-close';
       close.type = 'button';
-      close.textContent = 'Fechar';
+      close.textContent = '×';
       panel.appendChild(close);
       panel.appendChild(h);
       panel.appendChild(p);
@@ -623,4 +623,103 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300);
     });
   }
+
+  // Prefetch pages on link hover for instant page transitions
+  const prefetchCache = new Set();
+  const prefetchPage = (url) => {
+    if (!url || prefetchCache.has(url) || !url.endsWith('.html')) return;
+    prefetchCache.add(url);
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = url;
+    document.head.appendChild(link);
+  };
+
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel')) {
+      a.addEventListener('mouseenter', () => prefetchPage(href), { passive: true });
+      a.addEventListener('touchstart', () => prefetchPage(href), { passive: true });
+    }
+  });
+});
+
+
+
+// ==========================================
+// PREMIUM SCROLL-TO-TOP BUTTON ENHANCEMENT
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollTopBtn = document.createElement('button');
+  scrollTopBtn.className = 'scroll-to-top';
+  scrollTopBtn.innerHTML = '↑';
+  scrollTopBtn.setAttribute('aria-label', 'Voltar ao topo');
+  document.body.appendChild(scrollTopBtn);
+
+  const toggleScrollTopVisibility = () => {
+    if (window.scrollY > 300) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  };
+
+  window.addEventListener('scroll', toggleScrollTopVisibility, { passive: true });
+  
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+
+// ==========================================
+// LIGHTBOX FOR THUMBNAIL IMAGES
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  const openImageModal = (imgSrc, altText) => {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop show';
+    backdrop.setAttribute('aria-hidden', 'false');
+
+    const panel = document.createElement('div');
+    panel.className = 'modal-panel img-modal-panel';
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'true');
+
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.alt = altText || 'Imagem ampliada';
+    img.className = 'modal-large-img';
+
+    const close = document.createElement('button');
+    close.className = 'modal-close';
+    close.type = 'button';
+    close.innerHTML = '×';
+
+    panel.appendChild(close);
+    panel.appendChild(img);
+    document.body.appendChild(backdrop);
+    document.body.appendChild(panel);
+
+    const cleanup = () => {
+      panel.remove();
+      backdrop.remove();
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+    
+    const onKey = (e) => { if (e.key === 'Escape') cleanup(); };
+    backdrop.addEventListener('click', cleanup);
+    close.addEventListener('click', cleanup);
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    close.focus();
+  };
+
+  document.querySelectorAll('.work-thumbs img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => {
+      openImageModal(img.src, img.alt);
+    });
+  });
 });

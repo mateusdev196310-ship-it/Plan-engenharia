@@ -24,8 +24,4 @@
     <loc>https://planengenharia.netlify.app/contato.html</loc>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://planengenharia.netlify.app/press.html</loc>
-    <priority>0.5</priority>
-  </url>
 </urlset>

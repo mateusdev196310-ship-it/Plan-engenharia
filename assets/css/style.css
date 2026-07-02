@@ -822,7 +822,7 @@ body > *{ position:relative; z-index:1; }
 
 /* Quem Somos Hero refinado */
 .page-hero.quem-somos {
-  background-image: url('../img/trator.jpg');
+  background-image: url('../img/atuacao/colegio_estadual_luiz_navarro.jpg');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -905,7 +905,7 @@ body > *{ position:relative; z-index:1; }
 
 /* Atuação Hero refinado */
 .page-hero.atuacao {
-  background-image: url('../img/trator.jpg');
+  background-image: url('../img/atuacao/colegio_estadual_luiz_navarro.jpg');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -1459,3 +1459,318 @@ body > *{ position:relative; z-index:1; }
   border:1px solid rgba(255,255,255,.16);border-left:3px solid var(--amber);
   color:#fff;border-radius:16px;padding:.85rem 1rem;box-shadow:0 12px 26px rgba(0,0,0,.28)}
 .contact-form .notice-card{margin:.6rem 0 1rem}
+
+
+/* ==========================================
+   PREMIUM GLASSMORPHISM & ACCENT GLOWS
+   ========================================== */
+
+/* Translucent Glassmorphic Header */
+.site-header {
+  background: rgba(12, 33, 54, 0.85) !important;
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Glowing scroll progress bar */
+.scroll-progress {
+  background: linear-gradient(90deg, var(--accent) 0%, #00d1ff 50%, var(--amber) 100%) !important;
+  box-shadow: 0 0 8px rgba(31, 122, 236, 0.6) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 5px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Modern Glowing Borders on Hover */
+.card, .mvv-card, .teaser, .news-item, .work-card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.card:hover, .mvv-card:hover, .teaser:hover, .news-item:hover, .work-card:hover {
+  transform: translateY(-5px) scale(1.008) !important;
+  border-color: rgba(31, 122, 236, 0.5) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35), 0 0 1px 1px rgba(31, 122, 236, 0.3) !important;
+}
+
+/* Dynamic glow on list elements on hover */
+.values-list li {
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.values-list li:hover {
+  transform: translateX(6px) !important;
+  background: rgba(31, 122, 236, 0.12) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(31, 122, 236, 0.15) !important;
+}
+
+/* WhatsApp floating pulse effect */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+  70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+.whatsapp-float {
+  animation: pulseGlow 2.5s infinite !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.whatsapp-float:hover {
+  transform: translateY(-4px) scale(1.06) !important;
+  filter: brightness(1.08) !important;
+}
+
+/* Premium Scroll to Top Button */
+.scroll-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 88px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(12, 33, 54, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 89;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+}
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-to-top:hover {
+  background: linear-gradient(180deg, #2a5f98, #1f7aec);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(31, 122, 236, 0.25), 0 8px 22px rgba(31, 122, 236, 0.5);
+  transform: translateY(-3px);
+}
+.scroll-to-top:active {
+  transform: translateY(-1px);
+}
+
+/* Micro-interaction for Carousel Buttons */
+.act-controls button, .panel-controls button, .hero-controls button, .thumbs-prev, .thumbs-next {
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+.act-controls button:hover, .panel-controls button:hover, .hero-controls button:hover, .thumbs-prev:hover, .thumbs-next:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 0 14px rgba(31, 122, 236, 0.45) !important;
+}
+
+/* Widescreen title gradients */
+.section-title {
+  background: linear-gradient(135deg, #ffffff 0%, #aed6f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Custom brand colors for contact icons on hover */
+.icon-strip a.whatsapp-btn:hover {
+  background: #25D366 !important;
+  border-color: #25D366 !important;
+  box-shadow: 0 0 18px rgba(37, 211, 102, 0.6) !important;
+}
+.icon-strip a.phone-btn:hover {
+  background: #1f7aec !important;
+  border-color: #1f7aec !important;
+  box-shadow: 0 0 18px rgba(31, 122, 236, 0.6) !important;
+}
+.icon-strip a.maps-btn:hover {
+  background: #ea4335 !important;
+  border-color: #ea4335 !important;
+  box-shadow: 0 0 18px rgba(234, 67, 53, 0.6) !important;
+}
+.icon-strip a.instagram-btn:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  border-color: #dc2743 !important;
+  box-shadow: 0 0 18px rgba(220, 39, 67, 0.6) !important;
+}
+
+/* Contact details list hover effects with brand colors */
+.contact-items li a {
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: inline-block;
+}
+#whatsapp a:hover {
+  color: #25D366 !important;
+  text-shadow: 0 0 8px rgba(37, 211, 102, 0.4);
+  transform: translateX(4px);
+}
+#telefone a:hover {
+  color: #00d1ff !important;
+  text-shadow: 0 0 8px rgba(0, 209, 255, 0.4);
+  transform: translateX(4px);
+}
+#email a:hover {
+  color: #ffd37a !important;
+  text-shadow: 0 0 8px rgba(255, 211, 122, 0.4);
+  transform: translateX(4px);
+}
+#endereco a:hover {
+  color: #ff6b6b !important;
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.4);
+  transform: translateX(4px);
+}
+#instagram a:hover {
+  color: #f09433 !important;
+  text-shadow: 0 0 8px rgba(240, 148, 51, 0.4);
+  transform: translateX(4px);
+}
+
+
+/* Limit max-height and add scroll to banner descriptions on obras.html to prevent overlapping thumbs */
+.banner-info {
+  max-height: 520px !important;
+  overflow-y: auto !important;
+  padding-right: 10px !important;
+  scrollbar-width: thin;
+}
+.banner-info::-webkit-scrollbar {
+  width: 4px;
+}
+.banner-info::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+}
+.banner-info::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+@media (max-width: 960px) {
+  .banner-info {
+    max-height: 420px !important;
+  }
+}
+@media (max-width: 480px) {
+  .banner-info {
+    max-height: 280px !important;
+  }
+}
+
+
+/* Modal Close Button Circle Shape and Sizing Fix */
+.modal-close {
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 32px !important;
+  line-height: 1 !important;
+  padding: 0 0 4px 0 !important; /* minor offset to vertically center the multiplication sign */
+  border-radius: 50% !important;
+  top: -15px !important;
+  right: -15px !important;
+  background-color: rgba(12, 33, 54, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.2s ease !important;
+}
+.modal-close:hover {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  transform: scale(1.08) !important;
+}
+
+
+/* General Modal Close Button small size and circular shape override */
+.modal-close,
+.modal-panel .modal-close,
+.modal-content .modal-close {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px !important;
+  line-height: 1 !important;
+  padding: 0 0 3px 0 !important; /* adjust alignment of '×' glyph */
+  border-radius: 50% !important;
+  background-color: rgba(12, 33, 54, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  z-index: 2010 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.modal-close:hover,
+.modal-panel .modal-close:hover,
+.modal-content .modal-close:hover {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  transform: scale(1.08) !important;
+}
+
+/* Image Modal styling */
+.img-modal-panel {
+  max-width: 90vw !important;
+  width: auto !important;
+  max-height: 90vh !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: visible !important;
+}
+
+.img-modal-panel .modal-large-img {
+  max-width: 100% !important;
+  max-height: 85vh !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.img-modal-panel .modal-close {
+  top: -16px !important;
+  right: -16px !important;
+}
+
+@media (max-width: 680px) {
+  .img-modal-panel .modal-close {
+    top: -12px !important;
+    right: -12px !important;
+  }
+}
