@@ -719,7 +719,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.work-thumbs img').forEach(img => {
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => {
-      openImageModal(img.src, img.alt);
+      const fullSrc = img.src.replace('/thumbs/', '/');
+      openImageModal(fullSrc, img.alt);
     });
   });
 });
