@@ -723,4 +723,14 @@ document.addEventListener('DOMContentLoaded', () => {
       openImageModal(fullSrc, img.alt);
     });
   });
+
+  // Preloader hide logic for clean transitions
+  const hidePreloader = () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader && !preloader.classList.contains('fade-out')) {
+      preloader.classList.add('fade-out');
+    }
+  };
+  window.addEventListener('load', hidePreloader);
+  setTimeout(hidePreloader, 2000); // Fail-safe check
 });
