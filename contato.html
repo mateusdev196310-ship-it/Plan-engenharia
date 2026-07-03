@@ -27,6 +27,23 @@
         <p>Carregando...</p>
       </div>
     </div>
+    <script>
+      (function() {
+        var preloader = document.getElementById('preloader');
+        var hide = function() {
+          if (preloader && !preloader.classList.contains('fade-out')) {
+            preloader.classList.add('fade-out');
+          }
+        };
+        if (document.readyState === 'complete') {
+          hide();
+        } else {
+          window.addEventListener('load', hide);
+        }
+        // Bulletproof fail-safe: hide after 1.2s max under any condition
+        setTimeout(hide, 1200);
+      })();
+    </script>
     <!-- =========== Menu Desktop =========== -->
     <header class="site-header wedge">
       <div class="topbar">
